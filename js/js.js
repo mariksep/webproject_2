@@ -7,3 +7,10 @@ function check(form)
      alert(" the username and pasword you entered dont match " )
   }
 }
+const modal= document.getElementById('signupModal');
+window.onclick= function(event) {
+    if (event.target===modal){
+      modal.style.display="none";
+    }
+};
+

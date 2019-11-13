@@ -11,9 +11,6 @@ body{
 
     width: 50%;
     height: 100vh;
-
-
-
 }
 .welcome_container{
     margin-top: 25%;
@@ -32,4 +29,23 @@ body{
 }
 .login_container button{
    margin-left: 50%;
+}
+.signup{
+    display: none;
+    padding: 0;
+    background-color: purple;
+
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.signupModal_content{
+    background-color: white;
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    position: relative;
+    top: 30%;
+
 }

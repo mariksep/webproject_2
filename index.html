@@ -20,11 +20,31 @@
         <input  type="password" placeholder="Enter Pasword" name="psw" required>
         <br>
         <button type="button" value="login" onclick="check(this.form)"> Login</button>
+        <button type="button" onclick="document.getElementById('signupModal').style.display='block'"> Signup</button>
+    </div>
+    </div>
 
-    </div>
-    </div>
+
 
 </form>
+
+<!--- Signup modal -->
+
+<div id="signupModal" class="signup">
+    <div class="signupModal_content">
+        <h2>kokeilu</h2>
+        <label> Email</label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+        <br>
+        <label>Password</label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+        <br>
+        <label>Repeate Password</label>
+        <input type="password" placeholder="Enter Password" name="pws-repeat" required>
+   <button type="button" onclick="document.getElementById('signupModal').style.display='none'"> Cancel</button>
+    <button type="submit">Signup</button>
+    </div>
+</div>
 <script src="js/js.js"></script>
 
 </body>
