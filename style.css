@@ -1,0 +1,35 @@
+body{
+    background-color: gray;
+
+}
+
+
+.login{
+
+    float: right;
+    background-color: red;
+
+    width: 50%;
+    height: 100vh;
+
+
+
+}
+.welcome_container{
+    margin-top: 25%;
+    text-align: center;
+}
+.welcome_container h1{
+    padding: 5%;
+}
+
+.login_container{
+    margin: auto;
+    background-color: blue;
+    width: 50%;
+    text-align: left;
+
+}
+.login_container button{
+   margin-left: 50%;
+}
