@@ -2,14 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bs-custom.
-    css">
+    <!--<link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="css/bs-custom.css">
+    <script src="https://kit.fontawesome.com/8624131126.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!--- Login  form-->
+
+<header>
+    <!-- SLIDESHOW -->
+    <div class="carousel_slide">
+        <img src="images/b_party.jpg" alt="Birthday party">
+    </div>
+    <div class="carousel_slide">
+        <img src="images/halloween.jpg" alt="Halloween pumpkin">
+    </div>
+    <div class="carousel_slide">
+        <img src="images/joulu.jpg" alt="Christmas cookies">
+    </div>
+
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="selectSlides(-1)">&#10094;</a>
+    <a class="next" onclick="selectSlides(1)">&#10095;</a>
+
+    <!-- LOG IN FORM -->
+    <div id="form-box" class="form_container">
+        <div class="button_container">
+            <div id="switchFormButton"></div>
+            <button type="button" class="switch_button" onclick="move_login()">Log in</button>
+            <button type="button" class="switch_button" onclick="move_register()">Register</button>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-google"></i>
+        </div>
+        <form id="login-form" class="input-group">
+            <input type="text" id="username" class="input-field" placeholder="User ID" required>
+            <input type="text" id="passwd" class="input-field" placeholder="Enter password" required>
+            <input type="checkbox" class="check_box"><span>Remember Password</span>
+            <button type="button" class="submit_button" onclick="check_values()">LOG IN</button>
+        </form>
+        <form id="register-form" class="input-group">
+            <input type="text" class="input-field" placeholder="User ID" required>
+            <input type="text" class="input-field" placeholder="Enter email" required>
+            <input type="text" class="input-field" placeholder="Enter password" required>
+            <input type="checkbox" class="check_box" required><span>I agree to the terms and conditions </span>
+            <button type="submit" class="submit_button">REGISTER</button>
+        </form>
+    </div>
+</header>
+
+<main>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Amet architecto aut dolor est ipsa quam quisquam. Delectus eos error esse et, magni minus sint voluptatum.
+        Ipsa necessitatibus omnis tenetur voluptatem!
+    </div>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolore dolorem fuga, laudantium natus
+        voluptates.
+        A assumenda, commodi doloremque earum fugiat illo nesciunt nihil placeat possimus recusandae saepe sapiente
+        sint!
+    </div>
+</main>
+
+
+<!--
 <main class="main_container">
 <form class="login">
     <div class="welcome_container">
@@ -29,7 +88,7 @@
 
 </form>
 </main>
-<!--- Signup modal-->
+Signup modal
 
 <div id="signupModal" class="signup">
     <div class="signupModal_content">
@@ -46,8 +105,9 @@
     <button type="submit">Signup</button>
     </div>
 </div>
+-->
 
-<script src="js/js.js"></script>
+<script src="js/scripts.js"></script>
 
 </body>
 </html>
