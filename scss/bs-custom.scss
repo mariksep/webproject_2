@@ -13,16 +13,21 @@ body, html {
 
 // CAROUSEL STYLES
 // Hide the images by default
-.carousel_slide {
-  display: none;
-  animation-name: fade;
-  animation-duration: 5.0s;
+.carousel{
+  transition: 30s ease-in;
 
 }
-@keyframes fade {
-  from {opacity: 0.4}
-  to {opacity: 1}
+.carousel_slide {
+
+  animation:fading 10s;
 }
+
+@keyframes fading
+{
+
+  0%{opacity:0.2}50%{opacity:0.8}100%{opacity:0}}
+
+
 
 // Full page img
 .carousel_slide img {
@@ -30,11 +35,6 @@ body, html {
   height: 100vh;
 }
 
-
-// On hover, add a black background color with a little bit see-through
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.6);
-}
 
 // End of the carousel styles
 
