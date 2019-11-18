@@ -36,22 +36,22 @@ function check_values() {
 }
 
 // SLIDESHOW
-let slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function selectSlides(n) {
-  showSlides(slideIndex += n);
-}
+var slideIndex = 0;
+showSlides();
 
 // Move between slides
-function showSlides(n) {
-  let slides = document.getElementsByClassName("carousel_slide");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (let i = 0; i < slides.length; i++) {
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("carousel_slide");
+  for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+
   slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 5000); // Change image every 2 seconds
+
+
 }
 
