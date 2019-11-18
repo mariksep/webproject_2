@@ -27,7 +27,7 @@ function check_values() {
   if (username === 'kokeilu' && password === '123') {
     console.log('toimii');
     form_box.style.display = 'none';
-    hero.style.backgroundImage = "url('images/b_party.jpg')";
+
   }
   else {
     console.log('oophs');
@@ -55,21 +55,3 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
 }
 
-/*
-function check(form)
-{
-  if (form.uname.value ==="kokeilu" &&form.psw.value==="123"){
-    window.open('./media.html')
-  }
-  else{
-    alert(" the username and pasword you entered dont match " )
-  }
-}
-const modal= document.getElementById('signupModal');
-window.onclick= function(event) {
-  if (event.target===modal){
-    modal.style.display="none";
-  }
-};
-
- */

@@ -41,14 +41,14 @@
         </div>
         <form id="login-form" class="input-group">
             <input type="text" id="username" class="input-field" placeholder="User ID" required>
-            <input type="text" id="passwd" class="input-field" placeholder="Enter password" required>
+            <input type="password" id="passwd" class="input-field" placeholder="Enter password" required>
             <input type="checkbox" class="check_box"><span>Remember Password</span>
             <button type="button" class="submit_button" onclick="check_values()">LOG IN</button>
         </form>
         <form id="register-form" class="input-group">
             <input type="text" class="input-field" placeholder="User ID" required>
             <input type="text" class="input-field" placeholder="Enter email" required>
-            <input type="text" class="input-field" placeholder="Enter password" required>
+            <input type="password" class="input-field" placeholder="Enter password" required>
             <input type="checkbox" class="check_box" required><span>I agree to the terms and conditions </span>
             <button type="submit" class="submit_button">REGISTER</button>
         </form>
@@ -67,45 +67,6 @@
     </div>
 </main>
 
-
-<!--
-<main class="main_container">
-<form class="login">
-    <div class="welcome_container">
-    <h1> Welcome
-    </h1>
-    <div class="login_container">
-        <label >Username:</label>
-        <input  type="text" placeholder="Enter Username" name="uname" required>
-        <br>
-        <label > Password:</label>
-        <input  type="password" placeholder="Enter Pasword" name="psw" required>
-        <br>
-        <button type="button" value="login" onclick="check(this.form)"> Login</button>
-        <button type="button" onclick="document.getElementById('signupModal').style.display='block'"> Signup</button>
-    </div>
-    </div>
-
-</form>
-</main>
-Signup modal
-
-<div id="signupModal" class="signup">
-    <div class="signupModal_content">
-        <h2>Signup</h2>
-        <label> Email</label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-        <br>
-        <label>Password</label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        <br>
-        <label>Repeate Password</label>
-        <input type="password" placeholder="Enter Password" name="pws-repeat" required>
-   <button type="button" onclick="document.getElementById('signupModal').style.display='none'"> Cancel</button>
-    <button type="submit">Signup</button>
-    </div>
-</div>
--->
 
 <script src="js/scripts.js"></script>
 
