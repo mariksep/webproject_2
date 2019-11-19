@@ -23,10 +23,14 @@ function check_values() {
   let password = document.getElementById('passwd').value;
   const form_box = document.getElementById('form-box');
   const hero = document.getElementById('hero');
+  const main = document.getElementById('content');
+  const header = document.getElementById('header');
 
   if (username === 'kokeilu' && password === '123') {
     console.log('toimii');
     form_box.style.display = 'none';
+    header.style.display='none';
+    main.style.display='flex ';
 
   }
   else {
@@ -55,3 +59,17 @@ function showSlides() {
 
 }
 
+// CLOSING AND OPENING MODAL
+
+function open_modal() {
+const x= document.getElementById("modal");
+x.style.display="flex";
+  console.log("open modal");
+}
+var modal = document.getElementById('modal');
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+    console.log("closing modal");
+  }
+};

@@ -13,7 +13,7 @@
 <body>
 
 
-<header>
+<header id="header">
     <!-- SLIDESHOW -->
     <div class="carousel">
     <div class="carousel_slide">
@@ -54,18 +54,30 @@
     </div>
 </header>
 
-<main>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Amet architecto aut dolor est ipsa quam quisquam. Delectus eos error esse et, magni minus sint voluptatum.
-        Ipsa necessitatibus omnis tenetur voluptatem!
+<main id="content">
+    <div class="card" onclick="open_modal()">
+        <img src="http://placekitten.com/200/300">
+        <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book. </p>
     </div>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolore dolorem fuga, laudantium natus
-        voluptates.
-        A assumenda, commodi doloremque earum fugiat illo nesciunt nihil placeat possimus recusandae saepe sapiente
-        sint!
+    <div class="card" onclick="open_modal()">
+        <img src="https://placedog.net/200/300">
+        <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book. </p>
+    </div>
+    <div class="card" onclick="open_modal()">
+        <img src="http://placekitten.com/200/300">
+        <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book. </p>
     </div>
 </main>
-
+<div id="modal">
+    <div id="card" >
+        <img src="http://placekitten.com/200/300">
+        <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book. </p>
+    </div>
+</div>
 
 <script src="js/scripts.js"></script>
 
