@@ -27,36 +27,31 @@ function check_values() {
   const header = document.getElementById('header');
 
   if (username === 'kokeilu' && password === '123') {
-    console.log('toimii');
     form_box.style.display = 'none';
     header.style.display='none';
     main.style.display='flex ';
-
   }
   else {
-    console.log('oophs');
     alert('The username and password you entered dont match');
   }
 }
 
 // SLIDESHOW
-var slideIndex = 0;
+
+let slideIndex = 0;
 showSlides();
 
 // Move between slides
 function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("carousel_slide");
-  for (i = 0; i < slides.length; i++) {
+  let slides = document.getElementsByClassName("carousel_slide");
+  for (let i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
   slideIndex++;
   if (slideIndex > slides.length) {slideIndex = 1}
 
   slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 7000); // Change image every 5 seconds
-
-
+  setTimeout(showSlides, 7000); // Change image every 7 seconds
 }
 
 // CLOSING AND OPENING MODAL
@@ -66,10 +61,19 @@ const x= document.getElementById("modal");
 x.style.display="flex";
   console.log("open modal");
 }
-var modal = document.getElementById('modal');
+
+let modal = document.getElementById('modal');
 window.onclick = function(event) {
   if (event.target === modal) {
     modal.style.display = "none";
     console.log("closing modal");
   }
 };
+
+// HAMBURGER MENU MOVEMENT
+
+const wrapperMenu = document.querySelector('.hamburger-menu');
+
+wrapperMenu.addEventListener('click', function(){
+  wrapperMenu.classList.toggle('open');
+});
