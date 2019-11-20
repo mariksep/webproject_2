@@ -67,9 +67,20 @@ x.style.display="flex";
   console.log("open modal");
 }
 var modal = document.getElementById('modal');
+var modal2 = document.getElementById('Adding_pic');
+
 window.onclick = function(event) {
-  if (event.target === modal) {
+  if (event.target === modal ||event.target ===  modal2) {
     modal.style.display = "none";
-    console.log("closing modal");
+    modal2.style.display = "none";
+    console.log("closing modal either pic modal or addin pic modal");
   }
 };
+// CLOSING AND OPENING MODAL ADDING PIC
+
+
+function open_modal_add() {
+  const x= document.getElementById('Adding_pic');
+  x.style.display="flex";
+  console.log("open modal adding pic");
+}
