@@ -1,53 +1,65 @@
 'use strict';
 
-// CHOOSE LOG IN OR REGISTRATION FORM
+// FIND FORM PARTS FOR THE MOVEMENT
 let login_form = document.getElementById('login-form');
 let register_form = document.getElementById('register-form');
 let log_button = document.getElementById('switchFormButton');
 
-function move_register() {
+// CHOOSE REGISTER FORM
+const move_reg_button = document.getElementById('move-register-btn');
+
+const move_register = () => {
   login_form.style.left = '-400px';
   register_form.style.left = '50px';
   log_button.style.left = '110px';
-}
+};
 
-function move_login() {
+move_reg_button.addEventListener('click', move_register);
+
+// CHOOSE LOG IN FORM
+const move_log_button = document.getElementById('move-login-btn');
+
+const move_login = () => {
   login_form.style.left = '50px';
   register_form.style.left = '450px';
   log_button.style.left = '0px';
-}
+};
+
+move_log_button.addEventListener('click', move_login);
+
 
 // CHECK LOG IN VALUES
-function check_values() {
+const log_submit_btn = document.getElementById('submit-log-btn');
+
+const check_values = () => {
   let username = document.getElementById('username').value;
   let password = document.getElementById('passwd').value;
   const form_box = document.getElementById('form-box');
-  const hero = document.getElementById('hero');
-  const main = document.getElementById('content');
+  const main = document.getElementById('main-content');
   const header = document.getElementById('header');
+  const navbar = document.getElementById('navi');
 
   if (username === 'kokeilu' && password === '123') {
-    console.log('toimii');
     form_box.style.display = 'none';
     header.style.display='none';
-    main.style.display='flex ';
-
+    main.style.display='flex';
+    navbar.style.display = 'flex';
   }
   else {
-    console.log('oophs');
     alert('The username and password you entered dont match');
   }
-}
+};
+
+log_submit_btn.addEventListener('click', check_values);
+
 
 // SLIDESHOW
-var slideIndex = 0;
-showSlides();
+let slideIndex = 0;
 
 // Move between slides
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("carousel_slide");
-  for (i = 0; i < slides.length; i++) {
+const showSlides = () => {
+  let slides = document.getElementsByClassName("carousel_slide");
+  for (let i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
   slideIndex++;
@@ -55,32 +67,53 @@ function showSlides() {
 
   slides[slideIndex-1].style.display = "block";
   setTimeout(showSlides, 7000); // Change image every 5 seconds
+};
+
+showSlides();
 
 
-}
+// OPENING CARD-MODAL
+const card_modal= document.getElementById("modal");
 
-// CLOSING AND OPENING MODAL
-
-function open_modal() {
-const x= document.getElementById("modal");
-x.style.display="flex";
+const open_modal = () => {
+  card_modal.style.display="flex";
   console.log("open modal");
-}
-var modal = document.getElementById('modal');
-var modal2 = document.getElementById('Adding_pic');
+};
 
-window.onclick = function(event) {
-  if (event.target === modal ||event.target ===  modal2) {
-    modal.style.display = "none";
-    modal2.style.display = "none";
-    console.log("closing modal either pic modal or addin pic modal");
+const check_if_card_modal = (e) => {
+  e.preventDefault();
+  let target = e.target;
+  if (target.className === 'card_img') {
+    open_modal();
   }
 };
-// CLOSING AND OPENING MODAL ADDING PIC
+
+document.body.addEventListener('click', check_if_card_modal);
+
+// OPENING MODAL ADDING PIC
+const plus_icon = document.getElementById('plus-icon');
+const add_pic_modal = document.getElementById('adding_pic');
+
+const open_modal_add = () => {
+  add_pic_modal.style.display = 'flex';
+  console.log('open modal adding pic');
+};
+
+plus_icon.addEventListener('click', open_modal_add);
 
 
-function open_modal_add() {
-  const x= document.getElementById('Adding_pic');
-  x.style.display="flex";
-  console.log("open modal adding pic");
-}
+// CLOSING CARD-MODAL AND ADD-PIC-MODAL BY CLICKING WINDOW
+const close_modal = (event) => {
+  if (event.target === card_modal ||event.target ===  add_pic_modal) {
+    card_modal.style.display = "none";
+    add_pic_modal.style.display = "none";
+    console.log("closing modal either pic modal or adding pic modal");
+  }
+};
+
+window.onclick = close_modal;
+
+// HAMBURGER MENU MOVEMENT
+const wrapperMenu = document.querySelector('.hamburger-menu');
+const toggle_hamburger = () => wrapperMenu.classList.toggle('open');
+wrapperMenu.addEventListener('click', toggle_hamburger);

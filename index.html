@@ -8,30 +8,28 @@
     <link rel="stylesheet" href="css/bs-custom.css">
     <script src="https://kit.fontawesome.com/8624131126.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
 </head>
 <body>
-
 
 <header id="header">
     <!-- SLIDESHOW -->
     <div class="carousel">
-    <div class="carousel_slide">
-        <img src="images/b_party.jpg" alt="Birthday party">
-    </div>
-    <div class="carousel_slide">
-        <img src="images/halloween.jpg" alt="Halloween pumpkin">
-    </div>
-    <div class="carousel_slide">
-        <img src="images/joulu.jpg" alt="Christmas cookies">
-    </div>
+        <div class="carousel_slide">
+            <img src="images/b_party.jpg" alt="Birthday party">
+        </div>
+        <div class="carousel_slide">
+            <img src="images/halloween.jpg" alt="Halloween pumpkin">
+        </div>
+        <div class="carousel_slide">
+            <img src="images/joulu.jpg" alt="Christmas cookies">
+        </div>
     </div>
     <!-- LOG IN FORM -->
     <div id="form-box" class="form_container">
         <div class="button_container">
             <div id="switchFormButton"></div>
-            <button type="button" class="switch_button" onclick="move_login()">Log in</button>
-            <button type="button" class="switch_button" onclick="move_register()">Register</button>
+            <button id="move-login-btn" type="button" class="switch_button">Log in</button>
+            <button id="move-register-btn" type="button" class="switch_button">Register</button>
         </div>
         <div class="social-icons">
             <i class="fab fa-facebook-f"></i>
@@ -41,7 +39,7 @@
             <input type="text" id="username" class="input-field" placeholder="User ID" required>
             <input type="password" id="passwd" class="input-field" placeholder="Enter password" required>
             <input type="checkbox" class="check_box"><span>Remember Password</span>
-            <button type="button" class="submit_button" onclick="check_values()">LOG IN</button>
+            <button id="submit-log-btn" type="button" class="submit_button">LOG IN</button>
         </form>
         <form id="register-form" class="input-group">
             <input type="text" class="input-field" placeholder="User ID" required>
@@ -54,57 +52,64 @@
     </div>
 </header>
 
-<main id="content">
-    <div class="nav">
-        <i class=" fas fa-bars fa-2x" id="nav-icon" ></i>
-        <i class="fas fa-plus fa-2x " id="plus-icon" onclick="open_modal_add()"></i>
+<nav id="navi">
+    <div class="hamburger-menu">
+        <div class="line-hmenu half start"></div>
+        <div class="line-hmenu"></div>
+        <div class="line-hmenu half end"></div>
     </div>
-<div id="card_container">
-    <div class="card" onclick="open_modal()">
+    <i class="fas fa-plus fa-2x " id="plus-icon"></i>
+</nav>
 
-        <img src="http://placekitten.com/200/300">
-        <p>
-            <i class="fas fa-heart"></i>
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-            galley of type and scrambled it to make a type specimen book. </p>
-    </div>
-    <div class="card" onclick="open_modal()">
 
-        <img src="https://placedog.net/200/300">
-        <p>
-            <i class="fas fa-heart"></i>
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-            galley of type and scrambled it to make a type specimen book. </p>
+<main id="main-content">
+    <div id="card_container">
+        <div class="card">
+            <img class="card_img" src="images/joulu.jpg">
+            <p>
+                <i class="fas fa-heart"></i>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a
+                galley of type and scrambled it to make a type specimen book. </p>
+        </div>
+        <div class="card">
+            <img class="card_img" src="images/halloween.jpg">
+            <p>
+                <i class="fas fa-heart"></i>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a
+                galley of type and scrambled it to make a type specimen book. </p>
+        </div>
+        <div class="card">
+            <img class="card_img" src="http://placekitten.com/200/300">
+            <p>
+                <i class="fas fa-heart"></i>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a
+                galley of type and scrambled it to make a type specimen book. </p>
+        </div>
+        <div class="card">
+            <img class="card_img" src="https://placedog.net/200/300">
+            <p>
+                <i class="fas fa-heart"></i>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                took a
+                galley of type and scrambled it to make a type specimen book. </p>
+        </div>
     </div>
-    <div class="card" onclick="open_modal()">
-
-        <img src="http://placekitten.com/200/300">
-        <p>
-            <i class="fas fa-heart"></i>
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-            galley of type and scrambled it to make a type specimen book. </p>
-    </div>
-    <div class="card" onclick="open_modal()">
-
-        <img src="https://placedog.net/200/300">
-        <p>
-            <i class="fas fa-heart"></i>
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-            galley of type and scrambled it to make a type specimen book. </p>
-    </div>
-    </div>
-
 </main>
+
 <div id="modal">
-    <div id="card" >
+    <div class="modal-content">
         <img src="http://placekitten.com/200/300">
         <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
             galley of type and scrambled it to make a type specimen book. </p>
     </div>
 </div>
-<div id="Adding_pic">
-    <div id="form" >
-        <input type="text"  placeholder="User ID" required>
+
+<div id="adding_pic">
+    <div id="adding_form">
+        <input type="text" placeholder="User ID" required>
         <input type="text" placeholder="Enter email" required>
     </div>
 </div>
