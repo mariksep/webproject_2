@@ -81,7 +81,6 @@ const open_modal = () => {
 };
 
 const check_if_card_modal = (e) => {
-  e.preventDefault();
   let target = e.target;
   if (target.className === 'card_img') {
     open_modal();
@@ -117,3 +116,18 @@ window.onclick = close_modal;
 const wrapperMenu = document.querySelector('.hamburger-menu');
 const toggle_hamburger = () => wrapperMenu.classList.toggle('open');
 wrapperMenu.addEventListener('click', toggle_hamburger);
+
+
+// LOADING IMAGE IN ADDING PIC-MODAL
+document.getElementById("file-upload").onchange = function () {
+
+  let reader = new FileReader();
+
+  reader.onload = function (e) {
+    // get loaded data and render thumbnail.
+    document.getElementById("image").src = e.target.result;
+  };
+
+  // read the image file as a data URL.
+  reader.readAsDataURL(this.files[0]);
+};
