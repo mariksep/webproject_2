@@ -338,8 +338,37 @@ body, html {
       width: 50%;
     }
   }
-}
 
+}
+/* ADD PIC MODAL HAJOAA AIKA PAHASTI ALLE 1030 px JÄLKEEN (CHECKBOX)
+TÄSSSÄ SIIHEN KORJAUS JOS EI MUUTA KEKSI*/
+/*
+@media screen and(max-width: 700px) {
+  #adding_pic{
+    #adding_form{
+      width: 70%;
+      height: 90%;
+    }
+  }
+
+}
+@media screen and (max-width: 1030px) {
+  #adding_pic {
+    #adding_form {
+
+      .custom-file-upload{
+        margin:10%;
+      }
+      #radio-group {
+        .teema-checkbox {
+
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+*/
     // NAVIGATION BAR
     nav {
       background-color: $valkoinen;
