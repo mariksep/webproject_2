@@ -112,13 +112,29 @@ const close_modal = (event) => {
 
 window.onclick = close_modal;
 
-// HAMBURGER MENU MOVEMENT
-const wrapperMenu = document.querySelector('.hamburger-menu');
-const toggle_hamburger = () => wrapperMenu.classList.toggle('open');
-wrapperMenu.addEventListener('click', toggle_hamburger);
-
 
 // LOADING IMAGE IN ADDING PIC-MODAL
+/*
+var input= document.getElementById('file-upload');
+const infoArea= document.getElementById('file-upload-filename');
+
+const showFilename= (event) =>{
+ const input = event.srcElement;
+  const filename= input.files[0].name;
+  infoArea.textContent= "File name:" + filename;
+};
+input.addEventListener('change', showFilename);
+*/
+const infoArea= document.getElementById('file-upload-filename');
+var input= document.getElementById('file-upload');
+
+const showFilename= (event) =>{
+  const input = event.srcElement;
+  const filename= input.files[0].name;
+  infoArea.textContent= "File name:" + filename;
+};
+input.addEventListener('change', showFilename);
+/*
 document.getElementById("file-upload").onchange = function () {
 
   let reader = new FileReader();
@@ -131,3 +147,52 @@ document.getElementById("file-upload").onchange = function () {
   // read the image file as a data URL.
   reader.readAsDataURL(this.files[0]);
 };
+*/
+
+
+
+
+// HAMBURGER MENU MOVEMENT
+const wrapperMenu = document.querySelector('.hamburger-menu');
+const toggle_hamburger = () => wrapperMenu.classList.toggle('open');
+wrapperMenu.addEventListener('click', toggle_hamburger);
+
+
+// LIKE ICON COLOR CHANGE
+
+
+
+const heart_color= (x) => {
+  x.style.color = " #faaca8";
+};
+
+/*
+ÄLÄ POISTA VIELÄ
+
+const heart= document.getElementById('heart');
+
+const color_heart= () => {
+  heart.style.color=" #faaca8";
+  console.log('heart color change');
+
+};
+heart.addEventListener('click', color_heart);
+
+
+const heart = document.getElementById('heart');
+console.log('heart found');
+
+const heart_color = () =>{
+  console.log('in heart color');
+
+  heart.style.color="blue";
+  console.log('heart color change');
+};
+heart.addEventListener('click', heart_color);
+*/
+
+
+
+
+
+
