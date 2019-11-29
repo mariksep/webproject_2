@@ -208,6 +208,9 @@ body, html {
     cursor: pointer;
     font-size: 150%;
   }
+  .liked{
+    color: #faaca8;
+  }
 
   img {
     width: 100%;
@@ -380,6 +383,20 @@ TÄSSSÄ SIIHEN KORJAUS JOS EI MUUTA KEKSI*/
       border: 2px solid $musta; // väliaikaisesti jotta nähdään missä menee rajat
     }
 
+.navi-content{
+ display: none;
+  position: absolute;
+  height: 300px;
+  width:120px;
+  border: 2px solid $musta;
+  margin-top: 20px;
+  ul{
+    list-style-type: none;
+    padding: 15px;
+    margin: auto;
+  }
+}
+.show {display: block;}
     // PLUS-ICON
     #plus-icon {
       color: $persikka;

@@ -109,7 +109,6 @@ const close_modal = (event) => {
     console.log("closing modal either pic modal or adding pic modal");
   }
 };
-
 window.onclick = close_modal;
 
 
@@ -153,18 +152,34 @@ document.getElementById("file-upload").onchange = function () {
 
 
 // HAMBURGER MENU MOVEMENT
+
+
 const wrapperMenu = document.querySelector('.hamburger-menu');
-const toggle_hamburger = () => wrapperMenu.classList.toggle('open');
+const toggle_hamburger = () =>
+  wrapperMenu.classList.toggle('open');
+
 wrapperMenu.addEventListener('click', toggle_hamburger);
+
+
+
+//navi open and close
+const navigation = document.getElementById('navigation');
+const content= document.querySelector('.navi-content');
+const showNav =() =>  {
+  content.classList.toggle('show');
+  console.log('nav open ');
+};
+navigation.addEventListener('click', showNav);
 
 
 // LIKE ICON COLOR CHANGE
 
 
-
 const heart_color= (x) => {
-  x.style.color = " #faaca8";
+x.classList.toggle('liked');
+
 };
+
 
 /*
 ÄLÄ POISTA VIELÄ
