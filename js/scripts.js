@@ -80,14 +80,14 @@ const open_modal = () => {
   console.log("open modal");
 };
 
-const check_if_card_modal = (e) => {
+const check_class = (e) => {
   let target = e.target;
   if (target.className === 'card_img') {
     open_modal();
   }
 };
 
-document.body.addEventListener('click', check_if_card_modal);
+window.addEventListener('click', check_class);
 
 // OPENING MODAL ADDING PIC
 const plus_icon = document.getElementById('plus-icon');
@@ -125,7 +125,7 @@ const showFilename= (event) =>{
 input.addEventListener('change', showFilename);
 */
 const infoArea= document.getElementById('file-upload-filename');
-var input= document.getElementById('file-upload');
+const input= document.getElementById('file-upload');
 
 const showFilename= (event) =>{
   const input = event.srcElement;
@@ -150,10 +150,7 @@ document.getElementById("file-upload").onchange = function () {
 
 
 
-
 // HAMBURGER MENU MOVEMENT
-
-
 const wrapperMenu = document.querySelector('.hamburger-menu');
 const toggle_hamburger = () =>
   wrapperMenu.classList.toggle('open');
@@ -161,8 +158,7 @@ const toggle_hamburger = () =>
 wrapperMenu.addEventListener('click', toggle_hamburger);
 
 
-
-//navi open and close
+//NAVI OPEN AND CLOSE
 const navigation = document.getElementById('navigation');
 const content= document.querySelector('.navi-content');
 const showNav =() =>  {
@@ -172,15 +168,36 @@ const showNav =() =>  {
 navigation.addEventListener('click', showNav);
 
 
-// LIKE ICON COLOR CHANGE
+// LIKE ICON COLOR CHANGE WHEN PRESSING THE HEART
+const heart_color = (x) => {
+  x.classList.toggle('liked');
+};
+
+document.body.addEventListener('click', event => {
+  if (event.target.nodeName === 'I') {
+    heart_color(event.target);
+  }
+});
 
 
-const heart_color= (x) => {
-x.classList.toggle('liked');
+/*
+
+const color_heart= () => {
+  heart.style.color=" #faaca8";
+  console.log('heart color change');
 
 };
 
-
+heart.addEventListener('click', heart_color(this));
+*/
+/*
+const check_if_heart_color = (e) => {
+  let target = e.target;
+  if (target.className === 'fa-heart') {
+    heart_color();
+  }
+};
+*/
 /*
 ÄLÄ POISTA VIELÄ
 

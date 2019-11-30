@@ -79,7 +79,7 @@
         <div class="card">
             <img class="card_img" src="images/joulu.jpg">
             <p>
-                <i class="fas fa-heart" onclick="heart_color(this)" ></i>
+                <i class="fas fa-heart"></i>
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
                 took a
                 galley of type and scrambled it to make a type specimen book. </p>
@@ -87,7 +87,7 @@
         <div class="card">
             <img class="card_img" src="images/halloween.jpg">
             <p>
-                <i class="fas fa-heart"  onclick="heart_color(this)"></i>
+                <i class="fas fa-heart"></i>
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
                 took a
                 galley of type and scrambled it to make a type specimen book. </p>
@@ -95,7 +95,7 @@
         <div class="card">
             <img class="card_img" src="http://placekitten.com/200/300">
             <p>
-                <i class="fas fa-heart" onclick="heart_color(this)" ></i>
+                <i class="fas fa-heart"></i>
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
                 took a
                 galley of type and scrambled it to make a type specimen book. </p>
@@ -103,7 +103,7 @@
         <div class="card">
             <img class="card_img" src="https://placedog.net/200/300">
             <p>
-                <i class="fas fa-heart" onclick="heart_color(this)"></i>
+                <i class="fas fa-heart"></i>
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
                 took a
                 galley of type and scrambled it to make a type specimen book. </p>
@@ -122,17 +122,15 @@
 <div id="adding_pic">
 
     <form id="adding_form">
-        <h2> Add photo</h2>
-
+        <h1>Add photo</h1>
         <input type="text" placeholder="Add a description" required>
         <input type="text" placeholder="Add a tags" required>
         <div id="radio-group">
-            <input type="checkbox" class="teema-checkbox"><span class="teema-checkbox-span">Teema</span>
-            <input type="checkbox" class="teema-checkbox"><span class="teema-checkbox-span">Teema</span>
-            <input type="checkbox" class="teema-checkbox"><span class="teema-checkbox-span">Teema</span>
-            <input type="checkbox" class="teema-checkbox"><span class="teema-checkbox-span">Teema</span>
-            <input type="checkbox" class="teema-checkbox"><span class="teema-checkbox-span">Teema</span>
-
+            <input type="checkbox" class="teema-checkbox"><span>Teema</span>
+            <input type="checkbox" class="teema-checkbox"><span>Teema</span>
+            <input type="checkbox" class="teema-checkbox"><span>Teema</span>
+            <input type="checkbox" class="teema-checkbox"><span>Teema</span>
+            <input type="checkbox" class="teema-checkbox"><span>Teema</span>
         </div>
         <!---   <form id="adding_file">
               <input type="file" id="file-upload" multiple required>
@@ -140,13 +138,11 @@
               <div id="file-upload-filename"></div>
           </form>
           -->
-        <div id="custom_upload_from">
          <label for="file-upload" class="custom-file-upload">
-              <i class="fa fa-cloud-upload"></i>Custom Upload
+             <i class="fa fa-cloud-upload"></i>Custom Upload
+             <input id="file-upload" type="file"/>
           </label>
-          <input id="file-upload" type="file"/>
          <div id="file-upload-filename"></div>
-        </div>
         <button  class="submit_button" type="button">ADD</button>
     </form>
 
