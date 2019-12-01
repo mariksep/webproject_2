@@ -283,7 +283,7 @@ body, html {
     align-items: center;
     border-radius: 28px;
     width: 450px;
-    height: 600px;
+    height: 700px;
 
     h1 {
       margin: 0;
@@ -325,14 +325,27 @@ body, html {
       background: $hover;
     }
 
-    #radio-group {
+    #child-themes {
+      display: none;
+      flex-wrap: wrap;
       width: 70%;
-      display: inline-block;
-      column-count: 2;
+    }
 
-      .teema-checkbox {
-        margin: 10px 0;
-      }
+    #main-themes {
+      display: flex;
+      flex-wrap: wrap;
+      width: 70%;
+    }
+
+    .theme_checkbox {
+      flex-grow: 1;
+      width: 50%;
+      margin: 4px 0;
+    }
+
+    input[type="checkbox"] {
+      width: 50px;
+      margin: 0;
     }
 
     .submit_button {
@@ -342,7 +355,7 @@ body, html {
   }
 }
 
-
+//div#test-themes> div:not(:first-child) > span{ background:yellow;}
 // NAVIGATION BAR
 nav {
   background-color: $valkoinen;
@@ -437,4 +450,34 @@ nav {
     height: 800px;
     margin: 5px;
   }
+
 }
+
+/* On screens that are 380px wide or less */
+@media screen and (max-width: 380px) {
+
+  #adding_pic {
+
+    #adding_form {
+
+      #main-themes {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* On screens that are 440px wide or less */
+@media screen and (max-width: 440px) {
+
+  #adding_pic {
+
+    #adding_form {
+
+      #child-themes {
+        width: 100%;
+      }
+    }
+  }
+}
+

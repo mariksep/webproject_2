@@ -27,7 +27,6 @@ const move_login = () => {
 
 move_log_button.addEventListener('click', move_login);
 
-
 // CHECK LOG IN VALUES
 const log_submit_btn = document.getElementById('submit-log-btn');
 
@@ -41,43 +40,42 @@ const check_values = () => {
 
   if (username === 'kokeilu' && password === '123') {
     form_box.style.display = 'none';
-    header.style.display='none';
-    main.style.display='flex';
+    header.style.display = 'none';
+    main.style.display = 'flex';
     navbar.style.display = 'flex';
-  }
-  else {
+  } else {
     alert('The username and password you entered dont match');
   }
 };
 
 log_submit_btn.addEventListener('click', check_values);
 
-
 // SLIDESHOW
 let slideIndex = 0;
 
 // Move between slides
 const showSlides = () => {
-  let slides = document.getElementsByClassName("carousel_slide");
+  let slides = document.getElementsByClassName('carousel_slide');
   for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+    slides[i].style.display = 'none';
   }
   slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
 
-  slides[slideIndex-1].style.display = "block";
+  slides[slideIndex - 1].style.display = 'block';
   setTimeout(showSlides, 7000); // Change image every 5 seconds
 };
 
 showSlides();
 
-
 // OPENING CARD-MODAL
-const card_modal= document.getElementById("modal");
+const card_modal = document.getElementById('modal');
 
 const open_modal = () => {
-  card_modal.style.display="flex";
-  console.log("open modal");
+  card_modal.style.display = 'flex';
+  console.log('open modal');
 };
 
 const check_class = (e) => {
@@ -100,17 +98,15 @@ const open_modal_add = () => {
 
 plus_icon.addEventListener('click', open_modal_add);
 
-
 // CLOSING CARD-MODAL AND ADD-PIC-MODAL BY CLICKING WINDOW
 const close_modal = (event) => {
-  if (event.target === card_modal ||event.target ===  add_pic_modal) {
-    card_modal.style.display = "none";
-    add_pic_modal.style.display = "none";
-    console.log("closing modal either pic modal or adding pic modal");
+  if (event.target === card_modal || event.target === add_pic_modal) {
+    card_modal.style.display = 'none';
+    add_pic_modal.style.display = 'none';
+    console.log('closing modal either pic modal or adding pic modal');
   }
 };
 window.onclick = close_modal;
-
 
 // LOADING IMAGE IN ADDING PIC-MODAL
 /*
@@ -124,13 +120,13 @@ const showFilename= (event) =>{
 };
 input.addEventListener('change', showFilename);
 */
-const infoArea= document.getElementById('file-upload-filename');
-const input= document.getElementById('file-upload');
+const infoArea = document.getElementById('file-upload-filename');
+const input = document.getElementById('file-upload');
 
-const showFilename= (event) =>{
+const showFilename = (event) => {
   const input = event.srcElement;
-  const filename= input.files[0].name;
-  infoArea.textContent= "File name:" + filename;
+  const filename = input.files[0].name;
+  infoArea.textContent = 'File name:' + filename;
 };
 input.addEventListener('change', showFilename);
 /*
@@ -148,25 +144,21 @@ document.getElementById("file-upload").onchange = function () {
 };
 */
 
-
-
 // HAMBURGER MENU MOVEMENT
 const wrapperMenu = document.querySelector('.hamburger-menu');
 const toggle_hamburger = () =>
-  wrapperMenu.classList.toggle('open');
+    wrapperMenu.classList.toggle('open');
 
 wrapperMenu.addEventListener('click', toggle_hamburger);
 
-
 //NAVI OPEN AND CLOSE
 const navigation = document.getElementById('navigation');
-const content= document.querySelector('.navi-content');
-const showNav =() =>  {
+const content = document.querySelector('.navi-content');
+const showNav = () => {
   content.classList.toggle('show');
   console.log('nav open ');
 };
 navigation.addEventListener('click', showNav);
-
 
 // LIKE ICON COLOR CHANGE WHEN PRESSING THE HEART
 const heart_color = (x) => {
@@ -178,7 +170,6 @@ document.body.addEventListener('click', event => {
     heart_color(event.target);
   }
 });
-
 
 /*
 
@@ -224,7 +215,31 @@ heart.addEventListener('click', heart_color);
 */
 
 
+// CHANGE IF 'LAPSET'-CHECKBOX IS CHOSEN, SHOW/HIDE CHILD-THEMES
+const checkbox = document.querySelector("input[name=lapset]");
 
+checkbox.addEventListener('change', event => {
 
+  const child_themes = document.getElementById('child-themes');
+  const muut = document.querySelectorAll(
+      'div#main-themes> div:not(:first-child)');
 
+  if(event.target.checked) {
+    // Checkbox is checked, open child-themes
+    for (let i = 0; i < muut.length; i++) {
+      muut[i].style.display = 'none';
+    }
 
+    child_themes.style.display = 'flex';
+
+  }
+
+  else {
+    //Checkbox is not checked, close child-themes
+    for (let i = 0; i < muut.length; i++) {
+      muut[i].style.display = 'unset';
+    }
+
+    child_themes.style.display = 'none';
+  }
+});
