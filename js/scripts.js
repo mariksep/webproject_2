@@ -160,6 +160,7 @@ const showNav = () => {
 };
 navigation.addEventListener('click', showNav);
 
+
 // LIKE ICON COLOR CHANGE WHEN PRESSING THE HEART
 const heart_color = (x) => {
   x.classList.toggle('liked');
