@@ -168,11 +168,11 @@ body, html {
   top: 150px;
 
   .submit_button {
-    margin-top: 20px;
+    margin-top: 0;
   }
 
   span {
-    bottom: 89px;
+    bottom: 69px;
   }
 }
 
@@ -207,6 +207,7 @@ body, html {
     color: grey;
     cursor: pointer;
     font-size: 150%;
+    margin: 10px;
   }
 
   .liked {
@@ -221,8 +222,9 @@ body, html {
   }
 
   p {
-    padding: 10px;
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    margin: 0;
   }
 }
 
@@ -248,7 +250,7 @@ body, html {
   border-radius: 10px;
 
   img {
-    width: 50%;
+    width: 60%;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
@@ -307,7 +309,7 @@ body, html {
 
     .custom-file-upload {
       background: $persikka;
-      padding: 20px 45px;
+      padding: 20px 30px;
       font-weight: bold;
       border-radius: 30px;
       cursor: pointer;
@@ -351,6 +353,39 @@ body, html {
       margin: 0;
     }
   }
+
+  #recipe-cb {
+    font-weight: bold;
+  }
+
+  #recipe-form {
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 28px;
+    width: 450px;
+    height: 700px;
+
+    #ainesosio {
+      display: flex;
+      width: 70%;
+      justify-content: space-around;
+    }
+
+    #ohjeosio {
+      display: flex;
+      width: 70%;
+      justify-content: space-around;
+    }
+
+    .submit_button {
+      margin: 0;
+      width: 50%;
+    }
+  }
+
 }
 
 //div#test-themes> div:not(:first-child) > span{ background:yellow;}

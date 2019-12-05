@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!--<link rel="stylesheet" href="css/style.css">-->
     <link rel="stylesheet" href="css/bs-custom.css">
     <script src="https://kit.fontawesome.com/8624131126.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
@@ -36,22 +35,21 @@
             <i class="fab fa-google"></i>
         </div>
         <form id="login-form" class="input-group">
-            <input type="text" id="username" class="input-field" placeholder="User ID" required>
-            <input type="password" id="passwd" class="input-field" placeholder="Enter password" required>
+            <input type="text" id="username" class="input-field" name="username" placeholder="Username" required>
+            <input type="password" id="passwd" class="input-field" name="password" placeholder="Enter password" required>
             <input type="checkbox" class="check_box"><span>Remember Password</span>
-            <button id="submit-log-btn" type="button" class="submit_button">LOG IN</button>
+            <button id="submit-log-btn" type="submit" class="submit_button">LOG IN</button>
         </form>
         <form id="register-form" class="input-group">
-            <input type="text" class="input-field" placeholder="User ID" required>
-            <input type="text" class="input-field" placeholder="Enter email" required>
-            <input type="password" class="input-field" placeholder="Enter password" required>
-            <input type="password" class="input-field" placeholder="Enter password again" required>
+            <input type="text" class="input-field" name="username" pattern=".{3,}" placeholder="Username" required>    <!-- VÄHINTÄÄN 3 KIRJAINTA -->
+            <input type="text" class="input-field" name="email" placeholder="Enter email" required>
+            <input type="password" class="input-field" pattern="(?=.*[A-Z]).{8,}" placeholder="Enter password" required>   <!-- VÄH 8 KIRJAINTA, 1 ISO -->
+            <input type="password" class="input-field" name="password" placeholder="Enter password again" required>
             <input type="checkbox" class="check_box" required><span>I agree to the terms and conditions </span>
             <button type="submit" class="submit_button">REGISTER</button>
         </form>
     </div>
 </header>
-<!-- NAVIGATION -->
 
 <nav id="navi">
     <div id="navigation" >
@@ -69,29 +67,10 @@
             <li>
                 <i class="far fa-user-circle fa-3x"></i>
             </li>
-            <li>
-                Teemat:
-            </li>
-                    <li>
-                        Joulu
-                    </li>
-                    <li>
-                        Syntymäpäivä
-                    </li>
-                    <li>
-                        Halloween
-                    </li>
-                    <li>
-                        Sekalaiset
-                    </li>
-                    <li>
-
-                    </li>
-
-
+            <li id="user-info"></li>    <!-- Käyttäjänimi -->
         </ul>
+    <button id="logout-button" class="submit_button">LOG OUT</button>
 </div>
-<!-- MAIN CONTENT -->
 
 <main id="main-content">
     <div id="card_container">
@@ -129,59 +108,56 @@
         </div>
     </div>
 </main>
-<!-- PIC MODAL -->
 
 <div id="modal">
     <div class="modal-content">
-        <img src="http://placekitten.com/200/300">
+        <img src="">
         <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
             galley of type and scrambled it to make a type specimen book. </p>
     </div>
 </div>
 
-<!-- ADDING PIC MODAL -->
-
 <div id="adding_pic">
 
-    <form id="adding_form">
-        <h1>Add photo</h1>
-        <input type="text" placeholder="Add a description" required>
-        <input type="text" placeholder="Add a tags" required>
+    <form id="adding_form" enctype="multipart/form-data">
+        <h1>ADD PHOTO</h1>
+        <input type="text" name="description" placeholder="Add a description" required>
+        <input type="text" name="tags" placeholder="Add a tags" required>
 
         <div id="main-themes">
-            <div class="theme_checkbox"><input name="lapset" type="checkbox" class="teema-checkbox"><span>Lapset</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Halloween</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Joulu</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Syntymäpäivä</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Brunssi</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Vappu</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Pääsiäinen</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Rippijuhlat</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Häät</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Valmistujaiset</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Eläimet</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Autot</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>K18</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Sekalaiset</span></div>
+            <div id="lapset-cb" class="theme_checkbox"><input name="themes" value="Lapset" type="checkbox"><span>Lapset</span></div>
+            <div class="theme_checkbox"><input name="themes" value="Halloween" type="checkbox"><span>Halloween</span></div>
+            <div class="theme_checkbox"><input name="themes" value="Joulu" type="checkbox"><span>Joulu</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Syntymäpäivä"><span>Syntymäpäivä</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Brunssi"><span>Brunssi</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Vappu"><span>Vappu</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Pääsiäinen"><span>Pääsiäinen</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Rippijuhlat"><span>Rippijuhlat</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Häät"><span>Häät</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Valmistujaiset"><span>Valmistujaiset</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Eläimet"><span>Eläimet</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Autot"><span>Autot</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="K18"><span>K18</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Sekalaiset"><span>Sekalaiset</span></div>
         </div>
 
         <div id="child-themes">
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Disney</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Harry Potter</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Pipsa Possu</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Frozen</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Minions</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Muumit</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Autot</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Barbie</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>My Little Pony</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Hello Kitty</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Minecraft</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Lego</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Nalle Puh</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Paw Patrol</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Angry Birds</span></div>
-            <div class="theme_checkbox"><input type="checkbox" class="teema-checkbox"><span>Sekalaiset</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Disney"><span>Disney</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Harry Potter"><span>Harry Potter</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Pipsa Possu"><span>Pipsa Possu</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Frozen"><span>Frozen</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Minions"><span>Minions</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Muumit"><span>Muumit</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Autot"><span>Autot</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Barbie"><span>Barbie</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="My Little Pony"><span>My Little Pony</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Hello Kitty"><span>Hello Kitty</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Minecraft"><span>Minecraft</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Lego"><span>Lego</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Nalle Puh"><span>Nalle Puh</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Paw Patrol"><span>Paw Patrol</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Angry Birds"><span>Angry Birds</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Sekalaiset"><span>Sekalaiset</span></div>
         </div>
 
 
@@ -191,29 +167,37 @@
               <div id="file-upload-filename"></div>
           </form>
           -->
+        <div id="recipe-cb"><input type="checkbox" name="recipe"><span>I WANT TO SHARE THE RECIPE</span></div>
+
          <label for="file-upload" class="custom-file-upload">
-             <i class="fa fa-cloud-upload"></i>Custom Upload
-             <input id="file-upload" type="file"/>
+             <i class="fa fa-cloud-upload"></i>Choose the Photo
+             <input id="file-upload" type="file" name="filename" accept="image/*"/>    <!-- PITÄÄ OLLA KUVATIEDOSTO -->
           </label>
          <div id="file-upload-filename"></div>
-        <button  class="submit_button" type="button">ADD</button>
+        <button id="add-photo-button" class="submit_button" type="submit">ADD</button>
     </form>
 
-</div>
 
-
-<!-- MY PAGE MODAL -->
-
-<div class="my_profile">
-    <form class="profile_content">
-        <div class="text_content">
-        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+    <div id="recipe-form">
+        <h2>ADD RECIPE</h2>
+        <div id="ainesosio">
+            <div>Määrät</div>
+            <div>Ainekset</div>
         </div>
-    </form>
+        <div id="ohjeosio">
+            <div>Kohta</div>
+            <div>Ohjeet</div>
+        </div>
+        <button id="recipe-apply-btn" class="submit_button" type="button">APPLY RECIPE</button>
+    </div>
+
 </div>
 
+
+<script src="js/serialize.js"></script>
+<script src="js/backend_main.js"></script>
 <script src="js/scripts.js"></script>
+
 
 </body>
 </html>

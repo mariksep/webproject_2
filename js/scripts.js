@@ -27,28 +27,6 @@ const move_login = () => {
 
 move_log_button.addEventListener('click', move_login);
 
-// CHECK LOG IN VALUES
-const log_submit_btn = document.getElementById('submit-log-btn');
-
-const check_values = () => {
-  let username = document.getElementById('username').value;
-  let password = document.getElementById('passwd').value;
-  const form_box = document.getElementById('form-box');
-  const main = document.getElementById('main-content');
-  const header = document.getElementById('header');
-  const navbar = document.getElementById('navi');
-
-  if (username === 'kokeilu' && password === '123') {
-    form_box.style.display = 'none';
-    header.style.display = 'none';
-    main.style.display = 'flex';
-    navbar.style.display = 'flex';
-  } else {
-    alert('The username and password you entered dont match');
-  }
-};
-
-log_submit_btn.addEventListener('click', check_values);
 
 // SLIDESHOW
 let slideIndex = 0;
@@ -151,6 +129,7 @@ const toggle_hamburger = () =>
 
 wrapperMenu.addEventListener('click', toggle_hamburger);
 
+
 //NAVI OPEN AND CLOSE
 const navigation = document.getElementById('navigation');
 const content = document.querySelector('.navi-content');
@@ -215,11 +194,40 @@ const heart_color = () =>{
 heart.addEventListener('click', heart_color);
 */
 
+// CHANGE IF 'RECIPE'-CHECKBOX IS CHOSEN, ADD RECIPE
+const recipe_checkbox = document.querySelector("input[name=recipe]");
+const recipe_form = document.getElementById('recipe-form');
+const add_photo = document.getElementById('adding_form');
+
+recipe_checkbox.addEventListener('change', event => {
+
+  if(event.target.checked) {
+    // Checkbox is checked
+    add_photo.style.display = 'none';
+    recipe_form.style.display = 'flex';
+  }
+
+  else {
+    //Checkbox is not checked
+    console.log('error');
+  }
+});
+
+//CLOSE RECIPE-FORM
+const recipe_apply_btn = document.getElementById('recipe-apply-btn');
+
+const close_add_recipe = () => {
+  recipe_form.style.display = 'none';
+  add_photo.style.display = 'flex';
+};
+
+recipe_apply_btn.addEventListener('click', close_add_recipe);
+
 
 // CHANGE IF 'LAPSET'-CHECKBOX IS CHOSEN, SHOW/HIDE CHILD-THEMES
-const checkbox = document.querySelector("input[name=lapset]");
+const child_checkbox = document.querySelector("#lapset-cb");
 
-checkbox.addEventListener('change', event => {
+child_checkbox.addEventListener('change', event => {
 
   const child_themes = document.getElementById('child-themes');
   const muut = document.querySelectorAll(
@@ -230,9 +238,7 @@ checkbox.addEventListener('change', event => {
     for (let i = 0; i < muut.length; i++) {
       muut[i].style.display = 'none';
     }
-
     child_themes.style.display = 'flex';
-
   }
 
   else {
@@ -240,7 +246,51 @@ checkbox.addEventListener('change', event => {
     for (let i = 0; i < muut.length; i++) {
       muut[i].style.display = 'unset';
     }
-
     child_themes.style.display = 'none';
   }
 });
+
+
+// GET THE VALUES OF THE CHECKBOXES
+const get_values = () => {
+  let values = '';
+  let inputElements = document.querySelectorAll('input[type=checkbox][name=themes]');
+
+  for (let i = 0; i < inputElements.length; i++) {
+    if (inputElements[i].checked) {
+      values += ' ' + inputElements[i].value;
+    }
+  }
+  console.log('arvot', values);
+};
+
+
+// CHECK HOW MANY CHECKBOXES HAVE BEEN SELECTED, MIN 1 AND MAX 3
+const addPhotoBtn = document.querySelector('#add-photo-button');
+
+const count_checkedBoxes = () => {
+  let checkBoxes = document.querySelectorAll('input[type=checkbox][name=themes]');
+  let checkedThemes = 0;
+
+  for (let i = 0; i < checkBoxes.length; i++) {
+    if (checkBoxes[i].checked) {
+      checkedThemes++;
+    }
+
+    if (checkedThemes === 0) {
+      alert('Choose at least one theme');
+      return;
+    }
+    if (checkedThemes > 3) {
+      alert('You can select up to three themes');
+      return;
+    }
+  }
+
+  get_values();
+};
+
+addPhotoBtn.addEventListener('click', count_checkedBoxes);
+
+
+
