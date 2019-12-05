@@ -7,7 +7,7 @@ const cors = require('cors');
 const picRoute = require('./routes/picRoute');
 const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
-
+//ETSTAaD
 app.use(cors());
 
 app.use(express.json()); // for parsing application/json
