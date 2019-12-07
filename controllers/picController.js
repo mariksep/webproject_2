@@ -5,7 +5,7 @@ const resize = require('../utils/resize');
 
 const pic_list_get = async (req, res) => {
   const pics = await picModel.getAllPics();
-  res.json(pics);
+  await res.json(pics);
 };
 
 const pic_get = async (req, res) => {
