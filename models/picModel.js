@@ -13,17 +13,26 @@ const getAllPics = async () => {
 
 const getPic = async (id) => {
   try {
-    const [rows] = await promisePool.query('SELECT * FROM pp_pic WHERE post_id = ?', id);
+    const [rows] = await promisePool.query('SELECT * FROM pp_pics WHERE pic_id = ?', id);
     return rows;
   } catch (e) {
     console.log('error', e.message);
   }
 };
 
+const getSearchedPics = async (params) => {
+  try {
+    const [rows] = await promisePool.query('SELECT * FROM pp_pics WHERE theme = ?', params);
+    return rows;
+  } catch (e) {
+    console.log('error haussa', e.message);
+  }
+};
+
 const addPic = async (params) => {
   try {
     const [rows] = await promisePool.execute(
-        'INSERT INTO pp_pics (username, description, tags, filename) VALUES (?, ?, ?, ?);', params);
+        'INSERT INTO pp_pics (username, description, tags, filename, theme) VALUES (?, ?, ?, ?, ?);', params);
     return rows;
   } catch (e) {
     console.log('error', e.message);
@@ -56,6 +65,7 @@ const deletePic = async (id) => {
 module.exports = {
   getAllPics,
   getPic,
+  getSearchedPics,
   addPic,
   updatePic,
   deletePic,

@@ -10,8 +10,9 @@ router.post('/register',
     [
       body('username', 'minimum 3 characters').isLength({min: 3}),
       body('email', 'email is not valid').isEmail(),
-      body('password', 'at least one upper case letter').
+      body('passwordFirst', 'at least one upper case letter').
           matches('(?=.*[A-Z]).{8,}'),
+      //body('passwordMatch', 'passwords must be the same').equals('passwordFirst'),
       sanitizeBody('username').escape(),
     ],
     authController.user_create_post,  // Rekisteröidään käyttäjä

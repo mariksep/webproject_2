@@ -13,6 +13,13 @@ const pic_get = async (req, res) => {
   await res.json(pic[0]);
 };
 
+const pic_search_by_theme = async (req, res) => {
+  console.log('cotroller teemat:', req.params.teemat);
+  const params = [req.params.teemat];
+  const pics = await picModel.getSearchedPics(params);
+  await res.json(pics);
+};
+
 const pic_create_post = async (req, res) => {
   const errors = validationResult(req);
 
@@ -23,7 +30,7 @@ const pic_create_post = async (req, res) => {
       // create thumbnail
       const thumb = await resize.makeThumbnail(req.file.path,
           'thumbnails/' + req.file.filename,
-          {width: 500, height: 500});
+          {width: 400, height: 400});
       console.log('thumb', thumb);
 
       const params = [
@@ -31,7 +38,9 @@ const pic_create_post = async (req, res) => {
         req.body.description,
         req.body.tags,
         req.body.filename, // req.body.filename if filename saved to body
+        req.body.theme,
       ];
+      console.log('values', req.body.theme);
       console.log('create', params);
       const pic = await picModel.addPic(params);
       await res.json({message: 'upload ok'});
@@ -66,6 +75,7 @@ const pic_delete = async (req, res) => {
 module.exports = {
   pic_list_get,
   pic_get,
+  pic_search_by_theme,
   pic_create_post,
   pic_update_put,
   pic_delete,

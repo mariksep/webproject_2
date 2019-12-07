@@ -37,6 +37,7 @@ const user_create_post = async (req, res, next) => {
   if (!errors.isEmpty()) {
     console.log('user create error', errors);
     res.send(errors.array());
+
   } else {
     // bcrypt password by adding salt
     const salt = bcrypt.genSaltSync(10);

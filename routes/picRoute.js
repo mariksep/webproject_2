@@ -5,8 +5,9 @@ const multer = require('multer');   // Tarvitaan tiedostojen uploadaukseen
 const upload = multer({dest: 'uploads/'});
 const picController = require('../controllers/picController');
 
-//hae kissa/t
+//hae kuva/t
 router.get('/', picController.pic_list_get);
+router.get('/:teemat', picController.pic_search_by_theme);
 router.get('/:id', picController.pic_get);
 
 

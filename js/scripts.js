@@ -250,7 +250,7 @@ child_checkbox.addEventListener('change', event => {
   }
 });
 
-
+/*
 // GET THE VALUES OF THE CHECKBOXES
 const get_values = () => {
   let values = '';
@@ -291,6 +291,4 @@ const count_checkedBoxes = () => {
 };
 
 addPhotoBtn.addEventListener('click', count_checkedBoxes);
-
-
-
+*/
