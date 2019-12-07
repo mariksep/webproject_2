@@ -8,6 +8,8 @@ const picRoute = require('./routes/picRoute');
 const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 //ETSTAaD
+
+///hgfhasgdfch
 app.use(cors());
 
 app.use(express.json()); // for parsing application/json
