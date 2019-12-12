@@ -66,7 +66,6 @@ const check_class = (e) => {
 window.addEventListener('click', check_class);
 
 
-
 // OPENING MODAL ADDING PIC
 const plus_icon = document.getElementById('plus-icon');
 const add_pic_modal = document.getElementById('adding_pic');
@@ -98,7 +97,6 @@ const closing_add_photo= (event)=>{
 add_photo_button.addEventListener('click', closing_add_photo);
 
 // LOADING IMAGE IN ADDING PIC-MODAL
-
 const infoArea = document.getElementById('file-upload-filename');
 const input = document.getElementById('file-upload');
 
@@ -108,6 +106,7 @@ const showFilename = (event) => {
   infoArea.textContent = 'File name:' + filename;
 };
 input.addEventListener('change', showFilename);
+
 
 // HAMBURGER MENU MOVEMENT
 const wrapperMenu = document.querySelector('.hamburger-menu');
@@ -125,18 +124,6 @@ const showNav = () => {
   console.log('nav open ');
 };
 navigation.addEventListener('click', showNav);
-
-
-// LIKE ICON COLOR CHANGE WHEN PRESSING THE HEART
-const heart_color = (x) => {
-  x.classList.toggle('liked');
-};
-
-document.body.addEventListener('click', event => {
-  if (event.target.nodeName === 'I') {
-    heart_color(event.target);
-  }
-});
 
 
 // CHANGE IF 'RECIPE'-CHECKBOX IS CHOSEN, ADD RECIPE
@@ -170,8 +157,6 @@ recipe_apply_btn.addEventListener('click', close_add_recipe);
 
 
 //radio buttons
-
-
 const type = document.getElementsByName("themes");
 const radio = document.querySelector(".radio");
 
@@ -232,9 +217,8 @@ const closing_myPAge= ()=>{
 };
 exit.addEventListener('click', closing_myPAge);
 
+
 // CLOSING MODIFY CARD
-
-
 const navContentS = document.querySelector('.navi-content');
 
 const addM = document.querySelector('.modify-photo-button');
@@ -249,81 +233,41 @@ addM.addEventListener('click', closingModify);
 
 
 
+// REPLACING THE DEFAULT VALIDATION MESSAGES ON REGISTRATION FORM
+const registerUsername = document.querySelector('#register-username');
+const registerEmail = document.querySelector('#register-email');
+const registerPass1 = document.querySelector('#register-password1');
+const registerPass2 = document.querySelector('#register-password2');
 
-
-
-
-
-
-/*
-// CHANGE IF 'LAPSET'-CHECKBOX IS CHOSEN, SHOW/HIDE CHILD-THEMES
-const child_checkbox = document.querySelector("#lapset-cb");
-
-child_checkbox.addEventListener('change', event => {
-
-  const child_themes = document.getElementById('child-themes');
-  const muut = document.querySelectorAll(
-      'div#main-themes> div:not(:first-child)');
-
-  if(event.target.checked) {
-    // Checkbox is checked, open child-themes
-    for (let i = 0; i < muut.length; i++) {
-      muut[i].style.display = 'none';
-    }
-    child_themes.style.display = 'flex';
-  }
-
-  else {
-    //Checkbox is not checked, close child-themes
-    for (let i = 0; i < muut.length; i++) {
-      muut[i].style.display = 'unset';
-    }
-    child_themes.style.display = 'none';
-  }
-});
-
-
-// GET THE VALUES OF THE CHECKBOXES
-const get_values = () => {
-  let values = '';
-  let inputElements = document.querySelectorAll('input[type=checkbox][name=themes]');
-
-  for (let i = 0; i < inputElements.length; i++) {
-    if (inputElements[i].checked) {
-      values += ' ' + inputElements[i].value;
-    }
-  }
-  console.log('arvot', values);
+registerUsername.oninvalid = function(event) {
+  event.target.setCustomValidity('Username has to have at least 3 characters');
 };
 
-
-// CHECK HOW MANY CHECKBOXES HAVE BEEN SELECTED, MIN 1 AND MAX 3
-const addPhotoBtn = document.querySelector('#add-photo-button');
-
-const count_checkedBoxes = () => {
-  let checkBoxes = document.querySelectorAll('input[type=checkbox][name=themes]');
-  let checkedThemes = 0;
-
-  for (let i = 0; i < checkBoxes.length; i++) {
-    if (checkBoxes[i].checked) {
-      checkedThemes++;
-    }
-
-    if (checkedThemes === 0) {
-      alert('Choose at least one theme');
-      return;
-    }
-    if (checkedThemes > 3) {
-      alert('You can select up to three themes');
-      return;
-    }
-  }
-
-  get_values();
+registerUsername.onchange = (e) => {
+  e.target.setCustomValidity('');
 };
 
-addPhotoBtn.addEventListener('click', count_checkedBoxes);
+registerEmail.oninvalid = function(event) {
+  event.target.setCustomValidity('Check that email-address is valid');
+};
 
+registerEmail.onchange = (e) => {
+  e.target.setCustomValidity('');
+};
 
+registerPass1.oninvalid = function(event) {
+  event.target.setCustomValidity('Password must contain at least one upper case');
+};
 
-*/
+registerPass1.onchange = (e) => {
+  e.target.setCustomValidity('');
+};
+
+registerPass2.oninvalid = function(event) {
+  event.target.setCustomValidity('Password must contain at least one upper case and they have to match');
+};
+
+registerPass2.onchange = (e) => {
+  e.target.setCustomValidity('');
+};
+

@@ -2,14 +2,12 @@
 const express = require('express');
 const router = express.Router();
 const {body, sanitizeBody} = require('express-validator');
-
 const multer = require('multer');   // Tarvitaan tiedostojen uploadaukseen
 const upload = multer({dest: 'uploads/'});
 const picController = require('../controllers/picController');
 
 //hae kuva/t
 router.get('/', picController.pic_list_get);
-//router.get('/teema/:teemat', picController.pic_search_by_theme);
 router.get('/tag/:tags', picController.pic_get_tag);
 router.get('/:id', picController.pic_get);
 router.get('/user/:username', picController.pic_get_user);
@@ -28,7 +26,7 @@ router.post('/', upload.single('filename'), (req, res, next) => {
       error: 'Not an image',
     });
   } else {
-    //tiedostonnimi bodyyn, jos haluaa ei pakollinen
+    //tiedostonnimi bodyyn
     req.body.filename = req.file.filename;
     next();
   }
@@ -48,8 +46,10 @@ router.put('/',
     picController.pic_update_put
 );
 
+
 //poista pic
 router.delete('/:id', picController.pic_delete);
+
 
 
 module.exports = router;

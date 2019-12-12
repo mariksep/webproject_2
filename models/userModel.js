@@ -43,9 +43,31 @@ const addUser = async (params) => {
   }
 };
 
+const checkUsername = async (username) => {
+  try {
+    const [rows] = await promisePool.execute(
+        'SELECT * FROM pp_user WHERE username = ?;', username);
+    return rows;
+  } catch (e) {
+    console.log('username error', e.message)
+  }
+};
+
+const checkEmail = async (email) => {
+  try {
+    const [rows] = await promisePool.execute(
+        'SELECT * FROM pp_user WHERE email = ?;', email);
+    return rows;
+  } catch (e) {
+    console.log('email error', e.message)
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUser,
   addUser,
   getUserLogin,
+  checkUsername,
+  checkEmail,
 };

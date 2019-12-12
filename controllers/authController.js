@@ -15,7 +15,7 @@ const login = (req, res) => {
     if (err || !user) {
       console.log('login error', err, user);
       return res.status(400).json({
-        message: 'Something is not right',
+        message: 'Username and password do not match, please try again',
         user: user,
       });
     }
@@ -35,14 +35,39 @@ const login = (req, res) => {
 
 // Kun rekisteröidään uusi käyttäjä
 const user_create_post = async (req, res, next) => {
+
   // Extract the validation errors from a request.
   const errors = validationResult(req); // require validationResult
 
   if (!errors.isEmpty()) {
     console.log('user create error', errors);
     res.send(errors.array());
+  }
 
+  //Tarkistetaan onko käyttäjänimi jo olemassa
+  const username = [req.body.username];
+  const tarkistaUsername = await userModel.checkUsername(username);
+
+  if (tarkistaUsername && tarkistaUsername.length > 0) {
+    console.log('username already exists in the database');
+    return res.status(409).send({message: 'Username is already taken.', status: '409'});
+  }
+
+  //Tarkistetaan onko email jo käytössä
+  const email = [req.body.email];
+  const tarkistaEmail = await userModel.checkEmail(email);
+
+  if (tarkistaEmail && tarkistaEmail.length > 0) {
+    console.log('email already exists in the database');
+    return res.status(409).send({message: 'Email is already taken', status: '409'});
+  }
+
+  //Tarkistetaan ovatko salasanat tismalleen samat
+  if (req.body.password !== req.body.passwordSecond) {
+    console.log('passwords do not match');
+    return res.status(409).send({message: 'Passwords do not match', status: '409'});
   } else {
+
     // bcrypt password by adding salt
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);    //ei olla passportin sisällä niin haetaan bodysta

@@ -10,7 +10,9 @@ const userModel = require('../models/userModel');
 // local strategy for username password login
 passport.use(new Strategy(
     async (username, password, done) => {
-      console.log('passport alku');
+      console.log('passport alku username', [username]);
+      console.log('passport alku passw', [password]);
+
       const params = [username];
       try {
         const [user] = await userModel.getUserLogin(params);    //tietokanta haku, vastaus on taulukko
@@ -32,7 +34,6 @@ passport.use(new Strategy(
 
 
 // JWT strategy for handling bearer token
-// Käytetään catRoutelle ja userRoutelle
 passport.use(new JWTStrategy({
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
           secretOrKey   : 'webprojekti2019'

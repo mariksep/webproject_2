@@ -150,11 +150,13 @@ body, html {
     margin: 30px 10px 30px 0;
   }
 
-  span {
+  label {
     color: $harmaa;
     font-size: 12px;
     bottom: 100px;
     position: absolute;
+    cursor: pointer;
+    margin-left: 20px;
   }
 
   .submit_button {
@@ -171,7 +173,7 @@ body, html {
     margin-top: 0;
   }
 
-  span {
+  label {
     bottom: 69px;
   }
 }
@@ -210,8 +212,16 @@ body, html {
     margin: 10px;
   }
 
-  .liked {
-    color: #faaca8;
+  .like {
+    color: $harmaa;
+  }
+
+  .unlike {
+    color: $persikka;
+  }
+
+  .hide {
+    display: none;
   }
 
   img {
@@ -226,25 +236,35 @@ body, html {
     align-items: center;
     margin: 0;
   }
+
+  .textlike {
+    margin-right: 10px;
+    font-size: 0.9rem;
+  }
+
+  .description {
+    font-weight: bold;
+  }
 }
+
 // MODAL IMAGE AND TEXTAREA
 .modal-content {
   margin: auto;
-  width: 80%;
+  width: 60%;
   background-color: $valkoinen;
   display: flex;
+  flex-direction: column;
   border-radius: 10px;
 
   img {
-    width: 60%;
+    width: 100%;
     border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
   p {
     margin: 20px;
     font-size: 25px;
-
   }
 }
 
@@ -392,8 +412,9 @@ body, html {
     }
   }
 
-  #recipe-cb {
+  label {
     font-weight: bold;
+    cursor: pointer;
   }
 
   #recipe-form {
@@ -426,7 +447,6 @@ body, html {
 
 }
 
-//div#test-themes> div:not(:first-child) > span{ background:yellow;}
 
 // NAVIGATION BAR
 nav {
@@ -491,9 +511,6 @@ nav {
    }
 
 
-
-
-
 .show {
   display: block;
 }
@@ -554,7 +571,6 @@ nav {
 .open .line-hmenu.end {
   transform: rotate(-90deg) translateX(-3px);
 }
-
 
 
 

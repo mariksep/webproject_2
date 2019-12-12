@@ -98,6 +98,8 @@ const deletePic = async (id) => {
 };
 //ilkan versiossa id aneettan sql pyynnöss [id] --> ei toimi pitää olla id
 
+
+
 module.exports = {
   getPicU,
   getPicT,
