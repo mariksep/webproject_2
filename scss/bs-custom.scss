@@ -199,7 +199,7 @@ body, html {
 .card {
   flex-grow: 1;
   flex-basis: 100%;
-  max-width: 500px; // muuttaa korttien/kuvien kokoa
+  max-width: 300px; // muuttaa korttien/kuvien kokoa
   margin: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
@@ -475,6 +475,11 @@ nav {
         color: #777777;
       }
     }
+
+  .submit_button {
+    margin-left: 10px;
+    font-size: .8rem;
+  }
   }
   #search-form{
     width: 60%;
@@ -672,6 +677,19 @@ nav {
           color: #faaca8;
         }
 
+        .like {
+          color: $harmaa;
+        }
+
+        .unlike {
+          color: $persikka;
+        }
+
+        .hide {
+          display: none;
+        }
+
+
         img {
           width: 100%;
           border-top-left-radius: 10px;
@@ -687,7 +705,22 @@ nav {
       }
 
     }
+
   }
+
+
+.like {
+  color: $harmaa;
+}
+
+.unlike {
+  color: $persikka;
+}
+
+.hide {
+  display: none;
+}
+
 
 #Modify_pic{
 

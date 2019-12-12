@@ -78,8 +78,6 @@ const createPicCards = (pics) => {
     heart_liked.setAttribute('data-likes', pic.likes);
     heart_unliked.setAttribute('data-likes', pic.likes);
 
-    console.log('ei ole tykatty');
-    // käyttäjä ei ole vielä tykännyt kuvasta
     heart_liked.classList.add('like', 'fas', 'fa-heart');
     heart_unliked.classList.add('hide', 'unlike', 'fas', 'fa-heart');
 
@@ -120,6 +118,30 @@ const createPicCards_user = (pics) => {
 
   pics.forEach((pic) => {
 
+    // Haetaan tietokannasta kuvat, joista käyttäjä on tykännyt
+    const get_ownlikes = async () => {
+      const user = sessionStorage.getItem('username');
+      const params = [user, pic.pic_id];
+
+      console.log('params', params);
+
+      try {
+        const options = {
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+          },
+        };
+
+        const response = await fetch(url + '/like/' + params, options);
+        const allLikes = await response.json();
+        console.log('vastaus', allLikes);
+
+        addOwnHearts(allLikes);
+      } catch (e) {
+        console.log(e.message);
+      }
+    };
+
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
 
@@ -138,10 +160,36 @@ const createPicCards_user = (pics) => {
     });
 
     const p = document.createElement('p');
-    const heart = document.createElement('i');
-    heart.classList.add('fas');
-    heart.classList.add('fa-heart');
+    const heart_liked = document.createElement('i');
+    const heart_unliked = document.createElement('i');
+    heart_liked.setAttribute('data-ownpicid', pic.pic_id);
+    heart_unliked.setAttribute('data-ownpicid', pic.pic_id);
+    heart_liked.setAttribute('data-likes', pic.likes);
+    heart_unliked.setAttribute('data-likes', pic.likes);
 
+    heart_liked.classList.add('like', 'fas', 'fa-heart');
+    heart_unliked.classList.add('hide', 'unlike', 'fas', 'fa-heart');
+
+    p.appendChild(heart_liked);
+    p.appendChild(heart_unliked);
+
+    const span1 = document.createElement('span');
+    if (pic.likes === 0) {
+      span1.style.display = 'none';
+    } else if (pic.likes === 1) {
+      span1.innerHTML += pic.likes + ' like ';
+    } else {
+      span1.innerHTML += pic.likes + ' likes ';
+    }
+
+    span1.classList.add('textlike');
+
+    const span2 = document.createElement('span');
+    span2.innerHTML = pic.description;
+    span2.classList.add('description');
+
+    p.appendChild(span1);
+    p.appendChild(span2);
     //Modify post, add select values to form
 
     const buttonM = document.createElement('button');
@@ -184,14 +232,15 @@ const createPicCards_user = (pics) => {
 
     });
 
-    p.appendChild(heart);
-    p.innerHTML += pic.description;
+    //p.appendChild(heart);
+    //p.innerHTML += pic.description;
     cardDiv.appendChild(img);
     cardDiv.appendChild(p);
     cardDiv.appendChild(buttonM);
     cardDiv.appendChild(buttonD);
     cardContainer_user.appendChild(cardDiv);
 
+    get_ownlikes();
   });
 };
 
@@ -377,21 +426,9 @@ if (sessionStorage.getItem('token')) {
 addPhoto.addEventListener('submit', async (evt) => {
   evt.preventDefault();
 
-  let teema = '';
-  const inputElements = document.querySelectorAll(
-      'input[type=checkbox][name=themes]');
-
-  for (let i = 0; i < inputElements.length; i++) {
-    if (inputElements[i].checked) {
-      teema += inputElements[i].value + ' ';
-    }
-  }
-  console.log('arvot', teema);
-
   const user_id = sessionStorage.getItem('username');
   let fdObject = new FormData(addPhoto);
   fdObject.append('username', user_id);
-  fdObject.append('theme', teema);
   const fetchOptions = {
     method: 'POST',
     headers: {
@@ -558,6 +595,7 @@ document.body.addEventListener('click', event => {
 // Lisätään sydämet, jos käyttäjä on tykännyt kuvasta aikaisemmin (kun kirjaudutaan sisään, päivitetään ym)
 const addHearts = (par) => {
 
+  console.log('lisää sydämmet');
   if (par.length > 0) {
     const picid = par[0].pic_id;
     console.log('id', picid);
@@ -565,6 +603,25 @@ const addHearts = (par) => {
     const elementti = document.querySelector('[data-picid=\'' + picid + '\']');
     elementti.classList.add('hide');
     elementti.nextElementSibling.classList.remove('hide');
+  }
+
+};
+
+// Lisätään sydämet omassa profiilissa
+const addOwnHearts = (par) => {
+
+  console.log('lisää omat sydämmet');
+  if (par.length > 0) {
+    const picid = par[0].pic_id;
+    console.log('id', picid);
+
+    const element = document.querySelector('[data-ownpicid=\'' + picid + '\']');
+    if (element) {
+      console.log('löytiy elmenet');
+    }
+
+    element.classList.add('hide');
+    element.nextElementSibling.classList.remove('hide');
   }
 
 };
