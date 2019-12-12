@@ -2,12 +2,14 @@
 const bcrypt = require('bcryptjs');
 const {validationResult} = require('express-validator');
 const userModel = require('../models/userModel');
+
 const jwt = require('jsonwebtoken');
 const passport = require('../utils/pass');
 
 // Kun kirjaudutaan
 const login = (req, res) => {
   console.log('login controller alku');
+
   // add passport authenticate
   passport.authenticate('local', {session: false}, (err, user, info) => {
     if (err || !user) {
@@ -27,7 +29,9 @@ const login = (req, res) => {
       return res.json({user, token});
     });
   })(req, res);
+
 };
+
 
 // Kun rekisteröidään uusi käyttäjä
 const user_create_post = async (req, res, next) => {

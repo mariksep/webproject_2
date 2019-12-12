@@ -11,7 +11,7 @@
 <body>
 
 <header id="header">
-    <!-- SLIDESHOW -->z
+    <!-- SLIDESHOW -->
     <div class="carousel">
         <div class="carousel_slide">
             <img src="images/b_party.jpg" alt="Birthday party">
@@ -36,18 +36,15 @@
         </div>
         <form id="login-form" class="input-group">
             <input type="text" id="username" class="input-field" name="username" placeholder="Username" required>
-            <input type="password" id="passwd" class="input-field" name="password" placeholder="Enter password"
-                   required>
+            <input type="password" id="passwd" class="input-field" name="password" placeholder="Enter password" required>
             <input type="checkbox" class="check_box"><span>Remember Password</span>
             <button id="submit-log-btn" type="submit" class="submit_button">LOG IN</button>
         </form>
         <form id="register-form" class="input-group">
-            <input type="text" class="input-field" name="username" pattern=".{3,}" placeholder="Username" required>
-            <!-- VÄHINTÄÄN 3 KIRJAINTA -->
+            <input type="text" class="input-field" name="username" pattern=".{3,}" placeholder="Username" required>    <!-- VÄHINTÄÄN 3 KIRJAINTA -->
             <input type="text" class="input-field" name="email" placeholder="Enter email" required>
-            <input type="password" class="input-field" name="passwordFirst" pattern="(?=.*[A-Z]).{8,}" placeholder="Enter password" required>
-            <!-- VÄH 8 KIRJAINTA, 1 ISO -->
-            <input type="password" class="input-field" name="passwordMatch" pattern="(?=.*[A-Z]).{8,}" placeholder="Enter password again" required>
+            <input type="password" class="input-field" pattern="(?=.*[A-Z]).{8,}" placeholder="Enter password" required>   <!-- VÄH 8 KIRJAINTA, 1 ISO -->
+            <input type="password" class="input-field" name="password" placeholder="Enter password again" required>
             <input type="checkbox" class="check_box" required><span>I agree to the terms and conditions </span>
             <button type="submit" class="submit_button">REGISTER</button>
         </form>
@@ -55,33 +52,37 @@
 </header>
 
 <nav id="navi">
-    <div id="navigation">
-        <div class="hamburger-menu">
-            <div class="line-hmenu half start"></div>
-            <div class="line-hmenu"></div>
-            <div class="line-hmenu half end"></div>
-        </div>
+    <div id="navigation" >
+    <div class="hamburger-menu">
+        <div class="line-hmenu half start"></div>
+        <div class="line-hmenu"></div>
+        <div class="line-hmenu half end"></div>
+    </div>
     </div>
     <i class="fas fa-plus fa-2x " id="plus-icon"></i>
 </nav>
 
 <div class="navi-content">
-    <ul id="lista">
-        <li>
-            <i class="far fa-user-circle fa-3x"></i>
-        </li>
-        <li id="user-info"></li>    <!-- Käyttäjänimi -->
-    </ul>
-    <input id="search-tag-input" type="text" class="input-field" name="search-tag-input" placeholder="Search by tagname" required>
-    <button id="search-tag-button" type="button">SEARCH BY TAGNAME</button>
-    <input id="search-theme-input" type="text" class="input-field" name="search-theme" placeholder="Search for theme" required>
-    <button id="search-theme-button">SEARCH BY THEME</button>
-    <button id="logout-button" type="button" class="submit_button">LOG OUT</button>
+        <ul id="lista">
+            <li id="testi">
+                <i class="far fa-user-circle fa-3x"></i>
+            </li>
+            <li id="user-info"></li>    <!-- Käyttäjänimi -->
+        </ul>
+
+    <form id="search-form">
+        <h5>Use tag to find images </h5>
+        <input id="search-input" value="" type="search" placeholder="Search by tag">
+        <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
+
+    </form>
+
+    <button id="logout-button" class="submit_button">LOG OUT</button>
 </div>
 
 <main id="main-content">
     <div id="card_container">
-        <!-- KUVAT LATAUTUVAT TÄHÄN -->
+
     </div>
 </main>
 
@@ -98,59 +99,44 @@
     <form id="adding_form" enctype="multipart/form-data">
         <h1>ADD PHOTO</h1>
         <input type="text" name="description" placeholder="Add a description" required>
-        <input type="text" name="tags" placeholder="Add a tags" required>
-
+        <h5>Choose one tag below or type one word</h5>
+        <input id="demo" value="" type="text" name="tags" placeholder="tag" class="tag_input" maxlength="12" required>
         <div id="main-themes">
-            <div id="lapset-cb" class="theme_checkbox"><input name="themes" value="Lapset"
-                                                              type="checkbox"><span>Lapset</span></div>
-            <div class="theme_checkbox"><input name="themes" value="Halloween" type="checkbox"><span>Halloween</span>
-            </div>
-            <div class="theme_checkbox"><input name="themes" value="Joulu" type="checkbox"><span>Joulu</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes"
-                                               value="Syntymäpäivä"><span>Syntymäpäivä</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Brunssi"><span>Brunssi</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Vappu"><span>Vappu</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Pääsiäinen"><span>Pääsiäinen</span>
-            </div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes"
-                                               value="Rippijuhlat"><span>Rippijuhlat</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Häät"><span>Häät</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes"
-                                               value="Valmistujaiset"><span>Valmistujaiset</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Eläimet"><span>Eläimet</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Autot"><span>Autot</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="K18"><span>K18</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Sekalaiset"><span>Sekalaiset</span>
-            </div>
+            <div class="theme_checkbox"><input class="radio" type="radio" name="themes" value=1 onclick="check_radio()" ><span>Halloween</span></div>
+            <div class="theme_checkbox"><input class="radio"   type="radio" name="themes" value=2 onclick="check_radio()"><span>Christmas</span></div>
+            <div class="theme_checkbox"><input class="radio"  type="radio" name="themes" value=3 onclick="check_radio()"><span>Birthday</span></div>
+            <div class="theme_checkbox"><input class="radio"   type="radio" name="themes" value=4 onclick="check_radio()"><span>Brunch</span></div>
+            <div class="theme_checkbox"><input class="radio"   type="radio" name="themes" value=5 onclick="check_radio()"><span>Wedding</span></div>
+            <div class="theme_checkbox"><input class="radio"   type="radio" name="themes" value=6 onclick="check_radio()"><span>Easter</span></div>
+            <div class="theme_checkbox"><input class="radio"   type="radio" name="themes" value=7 onclick="check_radio()"><span>Kids</span></div>
+            <div class="theme_checkbox"><input class="radio"   type="radio" name="themes" value=7 onclick="check_radio()"><span>Graduation</span></div>
+
+
+<!--             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Rippijuhlat"><span>Rippijuhlat</span></div>
+             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Eläimet"><span>Eläimet</span></div>
+             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Autot"><span>Autot</span></div>
+             <div class="theme_checkbox"><input type="checkbox" name="themes" value="K18"><span>K18</span></div>
+             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Sekalaiset"><span>Sekalaiset</span></div> -->
         </div>
 
-        <div id="child-themes">
+     <!---   <div id="child-themes">
             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Disney"><span>Disney</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes"
-                                               value="Harry Potter"><span>Harry Potter</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes"
-                                               value="Pipsa Possu"><span>Pipsa Possu</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Harry Potter"><span>Harry Potter</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Pipsa Possu"><span>Pipsa Possu</span></div>
             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Frozen"><span>Frozen</span></div>
             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Minions"><span>Minions</span></div>
             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Muumit"><span>Muumit</span></div>
             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Autot"><span>Autot</span></div>
             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Barbie"><span>Barbie</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes"
-                                               value="My Little Pony"><span>My Little Pony</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes"
-                                               value="Hello Kitty"><span>Hello Kitty</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Minecraft"><span>Minecraft</span>
-            </div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="My Little Pony"><span>My Little Pony</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Hello Kitty"><span>Hello Kitty</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Minecraft"><span>Minecraft</span></div>
             <div class="theme_checkbox"><input type="checkbox" name="themes" value="Lego"><span>Lego</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Nalle Puh"><span>Nalle Puh</span>
-            </div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Paw Patrol"><span>Paw Patrol</span>
-            </div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes"
-                                               value="Angry Birds"><span>Angry Birds</span></div>
-            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Sekalaiset"><span>Sekalaiset</span>
-            </div>
-        </div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Nalle Puh"><span>Nalle Puh</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Paw Patrol"><span>Paw Patrol</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Angry Birds"><span>Angry Birds</span></div>
+            <div class="theme_checkbox"><input type="checkbox" name="themes" value="Sekalaiset"><span>Sekalaiset</span></div>
+        </div> -->
 
 
         <!---   <form id="adding_file">
@@ -161,11 +147,11 @@
           -->
         <div id="recipe-cb"><input type="checkbox" name="recipe"><span>I WANT TO SHARE THE RECIPE</span></div>
 
-        <label for="file-upload" class="custom-file-upload">
-            <i class="fa fa-cloud-upload"></i>Choose the Photo
-            <input id="file-upload" type="file" name="filename" accept="image/*"/>    <!-- PITÄÄ OLLA KUVATIEDOSTO -->
-        </label>
-        <div id="file-upload-filename"></div>
+         <label for="file-upload" class="custom-file-upload">
+             <i class="fa fa-cloud-upload"></i>Choose the Photo
+             <input id="file-upload" type="file" name="filename" accept="image/*"/>    <!-- PITÄÄ OLLA KUVATIEDOSTO -->
+          </label>
+         <div id="file-upload-filename"></div>
         <button id="add-photo-button" class="submit_button" type="submit">ADD</button>
     </form>
 
@@ -184,6 +170,69 @@
     </div>
 
 </div>
+
+
+<div id="myPage">
+    <div id="myPage_content">
+
+        <div id="exit">
+        <i class="fas fa-chevron-left fa-3x"></i>
+        </div>
+
+        <div id="content_container">
+        <ul>
+            <li class="text">My Profile</li>
+            <li>
+                <i class="far fa-user-circle fa-9x"></i>
+            </li>
+            <li id="user-name-mypage" class="text"></li>    <!-- Käyttäjänimi -->
+        </ul>
+        </div>
+
+            <div id="card-container">
+                    <div class="card">
+                        <img class="card_img" src="images/b_party.jpg">
+                                <p>
+                                    <i class="fas fa-heart"></i>
+                                            <p>description</p>
+
+                                </p>
+                    </div>
+
+            </div>
+        </div>
+
+
+</div>
+
+
+<div id="Modify_pic">
+    <form id="modify_form" >
+        <h1>MODIFY PHOTO</h1>
+        <input
+                type="text"
+                name="description"
+                placeholder="Add a description"
+                required>
+
+        <input id="demoModify"
+               class="tag_input"
+               value=""
+               type="text"
+               name="tags"
+               placeholder="Tag"
+               required>
+
+
+        <input type="hidden" name="id">
+        <button class="modify-photo-button" type="submit">Submit</button>
+    </form>
+</div>
+
+
+
+
+
 
 
 <script src="js/serialize.js"></script>

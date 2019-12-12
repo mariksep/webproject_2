@@ -1,5 +1,5 @@
 'use strict';
-const url = 'http://localhost:3000'; // change url when uploading to server
+const url = 'http://localhost:8000'; // change url when uploading to server
 
 // select needed html elements
 const loginForm = document.querySelector('#login-form');
@@ -14,15 +14,19 @@ const addPhoto = document.querySelector('#adding_form');
 const cardContainer = document.querySelector('#card_container');
 const modalImage = document.querySelector('.modal-content img');
 const modalP = document.querySelector('.modal-content p');
-const searchThemeButton = document.querySelector('#search-theme-button');
-const searchThemeInput = document.querySelector('#search-theme-input');
-const searchTagButton = document.querySelector('#search-tag-button');
-const searchTagInput = document.querySelector('#search-tag-input');
+const cardContainer_user = document.querySelector('#card-container');
+
+const usernameMyPage = document.querySelector('#user-name-mypage');
+const modForm =  document.querySelector('#modify_form');
+
+const buttonS = document.getElementById('search-form');
+const inputS = document.querySelector('#search-input');
 
 // CREATE MULTIPLE CARDS
 const createPicCards = (pics) => {
   // clear cardcontainer
   cardContainer.innerHTML = '';
+  console.log('täällä ollaan');
 
   pics.forEach((pic) => {
 
@@ -58,39 +62,92 @@ const createPicCards = (pics) => {
   });
 };
 
-// CREATE ONE CARD
-const createOneCard = (pic) => {
+// CREATING USERS OWN PICS
+const createPicCards_user = (pics) => {
+  // clear cardcontainer
+  cardContainer_user.innerHTML = '';
+  console.log('täällä ollaan');
 
-  const cardDiv = document.createElement('div');
-  cardDiv.classList.add('card');
+  pics.forEach((pic) => {
 
-  const img = document.createElement('img');
-  img.src = url + '/thumbnails/' + pic.filename;
-  img.alt = pic.description;
-  img.classList.add('card_img');
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
 
-  // open larger image when clicking image, show description and tags
-  img.addEventListener('click', () => {
-    modalImage.src = url + '/' + pic.filename;
-    modalImage.alt = pic.description;
+    const img = document.createElement('img');
+    img.src = url + '/thumbnails/' + pic.filename;
+    img.alt = pic.description;
+    img.classList.add('card_img');
 
-    modalP.innerHTML = 'Description: ' + pic.description + ' Tags: ' +
-        pic.tags + 'Username: ' + pic.username;
+    // open larger image when clicking image, show description and tags
+    img.addEventListener('click', () => {
+      modalImage.src = url + '/' + pic.filename;
+      modalImage.alt = pic.description;
+
+      modalP.innerHTML = 'Description: ' + pic.description + ' Tags: ' +
+          pic.tags + 'Username: ' + pic.username;
+    });
+
+    const p = document.createElement('p');
+    const heart = document.createElement('i');
+    heart.classList.add('fas');
+    heart.classList.add('fa-heart');
+
+
+    //Modify post, add select values to form
+
+    const buttonM = document.createElement('button');
+    const modify = document.querySelector('#Modify_pic');
+    const mypageC = document.querySelector('#myPage');
+    buttonM.innerHTML = 'Modify';
+    buttonM.addEventListener('click', () =>{
+              console.log('creating button modify and seting values');
+              modify.style.display= "block";  // avaa modify kortin
+              mypageC.style.display = "none"; // sulkee takana olevan mypage
+
+              const inputs = modForm.querySelectorAll('input');
+              inputs[0].value = pic.description;
+              inputs[1].value=pic.tags;
+              inputs[2].value= pic.pic_id;
+
+
+
+    });
+
+    //delete post
+    const buttonD = document.createElement('button');
+    buttonD.innerHTML = 'Delete';
+    buttonD.addEventListener('click', async ()=>{
+            console.log('Click delete, backendmain');
+            const fetchOptions = {
+                method: 'DELETE',
+                headers:{
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+              },
+            };
+            try{
+              const response = await fetch(url + '/pic/'+pic.pic_id, fetchOptions);
+              const pics = await response.json();
+              console.log('delete response', pics);
+              search_users_pics();
+              getPic();
+
+            }catch (e) {
+              console.log(e);
+            }
+
+        });
+
+    p.appendChild(heart);
+    p.innerHTML += pic.description;
+    cardDiv.appendChild(img);
+    cardDiv.appendChild(p);
+    cardDiv.appendChild(buttonM);
+    cardDiv.appendChild(buttonD);
+    cardContainer_user.appendChild(cardDiv);
+
   });
-
-  const p = document.createElement('p');
-  const heart = document.createElement('i');
-  heart.classList.add('fas');
-  heart.classList.add('fa-heart');
-
-  p.appendChild(heart);
-  p.innerHTML += pic.description;
-
-  cardDiv.appendChild(img);
-  cardDiv.appendChild(p);
-  cardContainer.appendChild(cardDiv);
-
 };
+
 
 // GET PIC
 const getPic = async () => {
@@ -109,10 +166,91 @@ const getPic = async () => {
   }
 };
 
+// GET USERS PIC
+const getPicU = async () => {
+  console.log('getPic   token ', sessionStorage.getItem('token'));
+  try {
+    const options = {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    };
+    const response = await fetch(url + '/pic', options);
+    const pics = await response.json();
+    createPicCards_user(pics);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+
+
+
+// SEARCH WITH TAG
+
+const searchtags = async(evt)=> {
+  evt.preventDefault();
+
+  var tag = inputS.value;
+  console.log(tag);
+  if (tag != null) {
+    tag = inputS.value;
+  }
+  else {
+    tag = " ";
+  }
+  console.log('getPic   token ', sessionStorage.getItem('token'));
+  try {
+    const options = {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    };
+    const response = await fetch(url + '/pic/tag/'+tag, options);
+    const pics = await response.json();
+    createPicCards(pics);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+buttonS.addEventListener('submit', searchtags );
+
+
+
+// SUBMIT MODIFY
+modForm.addEventListener('submit', async (evt) => {
+  console.log('backend_main submit modify ');
+
+  evt.preventDefault();
+  const data = serializeJson(modForm);
+  const fetchOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+    },
+    body: JSON.stringify(data),
+  };
+  console.log('fetchoptions'+fetchOptions);
+  const response = await fetch(url + '/pic', fetchOptions);
+  const json = await response.json();
+  console.log('modify response', json);
+  search_users_pics();
+  getPic();
+  console.log('updating view');
+
+});
+
+
+
+
+
+
 // LOGIN
 loginForm.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   const data = serializeJson(loginForm);
+
 
   const fetchOptions = {
     method: 'POST',
@@ -140,9 +278,9 @@ loginForm.addEventListener('submit', async (evt) => {
     userInfo.innerHTML = `${json.user.username}`;   // Lisätään käyttäjänimi naviin
     loginForm.reset();    // tyhjennä formin input-arvot
 
-    await getPic();
-  }
-});
+ await getPic();
+  }});
+
 
 // LOGOUT
 logOut.addEventListener('click', async (evt) => {
@@ -250,11 +388,95 @@ addPhoto.addEventListener('submit', async (evt) => {
   const response = await fetch(url + '/pic/', fetchOptions);
   const json = await response.json();
   console.log('add response', json);
+  addPhoto.reset();
   await getPic();
 });
 
-/* HUONO, HAKEE VAIN JOS ON  YKSI TEEMA, EI LÖYDÄ JOS ON USEITA
+
+
+
+
+// USERS OWN PICTURES SEARCH
+const username_Mypage = sessionStorage.getItem('username');
+
+const testi = document.querySelector('#testi');
+usernameMyPage.innerHTML = username_Mypage;
+
+
+const search_users_pics = async(evt)=> {
+  console.log('search_users_pics in');
+ // evt.preventDefault();
+
+  const username = sessionStorage.getItem('username');
+
+  try {
+    const options = {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      },
+    };
+    const response = await fetch(url + '/pic/user/'+username, options);
+    const pics = await response.json();
+    console.log('search_users_pics', pics);
+
+    createPicCards_user(pics);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+testi.addEventListener('click', search_users_pics);
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+//HUONO, HAKEE VAIN JOS ON  YKSI TEEMA, EI LÖYDÄ JOS ON USEITA
 // SEARCH PICS WITH CHOSEN THEME
+
+
+
+// CREATE ONE CARD
+
+const createOneCard = (pic) => {
+
+  const cardDiv = document.createElement('div');
+  cardDiv.classList.add('card');
+
+  const img = document.createElement('img');
+  img.src = url + '/thumbnails/' + pic.filename;
+  img.alt = pic.description;
+  img.classList.add('card_img');
+
+  // open larger image when clicking image, show description and tags
+  img.addEventListener('click', () => {
+    modalImage.src = url + '/' + pic.filename;
+    modalImage.alt = pic.description;
+
+    modalP.innerHTML = 'Description: ' + pic.description + ' Tags: ' +
+        pic.tags + 'Username: ' + pic.username;
+  });
+
+  const p = document.createElement('p');
+  const heart = document.createElement('i');
+  heart.classList.add('fas');
+  heart.classList.add('fa-heart');
+
+  p.appendChild(heart);
+  p.innerHTML += pic.description;
+
+  cardDiv.appendChild(img);
+  cardDiv.appendChild(p);
+  cardContainer.appendChild(cardDiv);
+};
+
 searchThemeButton.addEventListener('click', async (evt) => {
 
   let teemat = searchThemeInput.value;
@@ -276,59 +498,4 @@ searchThemeButton.addEventListener('click', async (evt) => {
     console.log(e.message);
   }
 
-});
-*/
-
-// LUODAAN KUVAKORTIT HAETULLA TAGILLA
-const createTagPicCards = (pics, tags) => {
-  //clear cardcontainer
-  cardContainer.innerHTML = '';
-
-  pics.forEach((pic) => {
-    console.log('tagit: ', pic.tags);
-    const kuvanTagit = pic.tags;
-
-    // jaetaan kuvaan liittyvät tietokannassa olevat tagit yksittäisiksi stringeiksi(array) hastagin kohdalta -> hastag poistuu ja jää pelkkä sana
-    const tagi = kuvanTagit.split('#');
-    console.log('jaettuina', tagi);
-
-    // Käydään kaikki kuvan tagit läpi
-    for (let i = 0; i < tagi.length; i++) {
-
-      // Jos joku kuvan tageista on sama kuin haettu tageista -> luodaan kortti
-      if (tagi[i] === tags) {
-        createOneCard(pic);
-      }
-    }
-
-    console.log('eka', tagi[0]);
-  });
-
-
-};
-
-// HAE KUVIA HALUTULLA TAGILLA
-searchTagButton.addEventListener('click', async (evt) => {
-  evt.preventDefault();
-
-  // Haetaan käyttäjän syöttämä tagin nimi
-  let tagi = searchTagInput.value;
-  console.log('löydetty tagi', tagi);
-
-  try {
-    const options = {
-      headers: {
-        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-      },
-    };
-
-    const response = await fetch(url + '/pic', options);
-    const pics = await response.json();
-
-    // Luodaan kortit
-    createTagPicCards(pics, tagi);
-  } catch (e) {
-    console.log(e.message);
-  }
-
-});
+});*/

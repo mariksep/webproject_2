@@ -1,18 +1,21 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
+const {body, sanitizeBody} = require('express-validator');
+
 const multer = require('multer');   // Tarvitaan tiedostojen uploadaukseen
 const upload = multer({dest: 'uploads/'});
 const picController = require('../controllers/picController');
 
 //hae kuva/t
 router.get('/', picController.pic_list_get);
-router.get('/:teemat', picController.pic_search_by_theme);
+//router.get('/teema/:teemat', picController.pic_search_by_theme);
+router.get('/tag/:tags', picController.pic_get_tag);
 router.get('/:id', picController.pic_get);
+router.get('/user/:username', picController.pic_get_user);
 
 
-
-// UPLOAD KISSA JA TIEDOSTO
+// UPLOAD pic JA TIEDOSTO
 router.post('/', upload.single('filename'), (req, res, next) => {
   console.log('pic post file', req.file);
 
@@ -32,13 +35,20 @@ router.post('/', upload.single('filename'), (req, res, next) => {
 
 });
 
-// Lisää kissa
+// Lisää pic
 router.post('/', picController.pic_create_post);
 
-// Muokkaa kissaa
-router.put('/', picController.pic_update_put);
+// Muokkaa pic
+router.put('/',
+    [
+      body('description', 'cannot be empty').isLength({min: 1}),
+      body('tags', 'cannot be empty').isLength({min: 1}),  // lisää vielä maksimi
+      body('id', 'must be number').isNumeric().isLength({min: 1}),
+    ],
+    picController.pic_update_put
+);
 
-//poista kissa
+//poista pic
 router.delete('/:id', picController.pic_delete);
 
 

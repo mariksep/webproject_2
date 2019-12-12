@@ -65,9 +65,13 @@ const check_class = (e) => {
 
 window.addEventListener('click', check_class);
 
+
+
 // OPENING MODAL ADDING PIC
 const plus_icon = document.getElementById('plus-icon');
 const add_pic_modal = document.getElementById('adding_pic');
+ const add_photo_button =document.querySelector('#add-photo-button');
+
 
 const open_modal_add = () => {
   add_pic_modal.style.display = 'flex';
@@ -78,26 +82,23 @@ plus_icon.addEventListener('click', open_modal_add);
 
 // CLOSING CARD-MODAL AND ADD-PIC-MODAL BY CLICKING WINDOW
 const close_modal = (event) => {
-  if (event.target === card_modal || event.target === add_pic_modal) {
+  if (event.target === card_modal || event.target === add_pic_modal ) {
     card_modal.style.display = 'none';
     add_pic_modal.style.display = 'none';
-    console.log('closing modal either pic modal or adding pic modal');
+    console.log('closing modal pic modal or adding pic modal ');
   }
 };
 window.onclick = close_modal;
 
-// LOADING IMAGE IN ADDING PIC-MODAL
-/*
-var input= document.getElementById('file-upload');
-const infoArea= document.getElementById('file-upload-filename');
-
-const showFilename= (event) =>{
- const input = event.srcElement;
-  const filename= input.files[0].name;
-  infoArea.textContent= "File name:" + filename;
+// closing add form by add button
+const closing_add_photo= (event)=>{
+  add_pic_modal.style.display='none';
 };
-input.addEventListener('change', showFilename);
-*/
+
+add_photo_button.addEventListener('click', closing_add_photo);
+
+// LOADING IMAGE IN ADDING PIC-MODAL
+
 const infoArea = document.getElementById('file-upload-filename');
 const input = document.getElementById('file-upload');
 
@@ -107,20 +108,6 @@ const showFilename = (event) => {
   infoArea.textContent = 'File name:' + filename;
 };
 input.addEventListener('change', showFilename);
-/*
-document.getElementById("file-upload").onchange = function () {
-
-  let reader = new FileReader();
-
-  reader.onload = function (e) {
-    // get loaded data and render thumbnail.
-    document.getElementById("image").src = e.target.result;
-  };
-
-  // read the image file as a data URL.
-  reader.readAsDataURL(this.files[0]);
-};
-*/
 
 // HAMBURGER MENU MOVEMENT
 const wrapperMenu = document.querySelector('.hamburger-menu');
@@ -151,48 +138,6 @@ document.body.addEventListener('click', event => {
   }
 });
 
-/*
-
-const color_heart= () => {
-  heart.style.color=" #faaca8";
-  console.log('heart color change');
-
-};
-
-heart.addEventListener('click', heart_color(this));
-*/
-/*
-const check_if_heart_color = (e) => {
-  let target = e.target;
-  if (target.className === 'fa-heart') {
-    heart_color();
-  }
-};
-*/
-/*
-ÄLÄ POISTA VIELÄ
-
-const heart= document.getElementById('heart');
-
-const color_heart= () => {
-  heart.style.color=" #faaca8";
-  console.log('heart color change');
-
-};
-heart.addEventListener('click', color_heart);
-
-
-const heart = document.getElementById('heart');
-console.log('heart found');
-
-const heart_color = () =>{
-  console.log('in heart color');
-
-  heart.style.color="blue";
-  console.log('heart color change');
-};
-heart.addEventListener('click', heart_color);
-*/
 
 // CHANGE IF 'RECIPE'-CHECKBOX IS CHOSEN, ADD RECIPE
 const recipe_checkbox = document.querySelector("input[name=recipe]");
@@ -224,6 +169,93 @@ const close_add_recipe = () => {
 recipe_apply_btn.addEventListener('click', close_add_recipe);
 
 
+//radio buttons
+
+
+const type = document.getElementsByName("themes");
+const radio = document.querySelector(".radio");
+
+
+const check_radio=()=>{
+  console.log('in check function');
+  if(type[0].checked){
+    document.getElementById("demo").value= "Halloween";
+  }
+  if (type[1].checked){
+    document.getElementById("demo").value= "Christmas";
+  }
+  if (type[2].checked){
+    document.getElementById("demo").value= "Birthday";
+  }
+  if (type[3].checked){
+    document.getElementById("demo").value= "Brunch";
+  }
+  if (type[4].checked){
+    document.getElementById("demo").value= "Wedding";
+
+  }
+  if (type[5].checked){
+    document.getElementById("demo").value= "Easter";
+
+  }
+  if (type[6].checked){
+    document.getElementById("demo").value= "Kids";
+
+  }
+  if (type[7].checked){
+    document.getElementById("demo").value= "Graduation";
+
+  }
+
+};
+
+
+//opening myPage
+
+const lista = document.querySelector("#lista");
+const myPage = document.querySelector("#myPage");
+const maincont = document.querySelector('#main-content');
+const exit = document.querySelector('#exit');
+
+
+const opening_myPage = () =>{
+  myPage.style.display="block";
+  maincont.style.display= "none";
+  console.log('my page opening');
+};
+lista.addEventListener('click',opening_myPage);
+const closing_myPAge= ()=>{
+  myPage.style.display="none";
+  maincont.style.display= "flex";
+  console.log('my page closing');
+
+};
+exit.addEventListener('click', closing_myPAge);
+
+// CLOSING MODIFY CARD
+
+
+const navContentS = document.querySelector('.navi-content');
+
+const addM = document.querySelector('.modify-photo-button');
+const modifyC = document.querySelector('#Modify_pic');
+
+const closingModify =  ()=>{
+  console.log('closing modify');
+  myPage.style.display = "block";
+  modifyC.style.display= "none";
+};
+addM.addEventListener('click', closingModify);
+
+
+
+
+
+
+
+
+
+/*
 // CHANGE IF 'LAPSET'-CHECKBOX IS CHOSEN, SHOW/HIDE CHILD-THEMES
 const child_checkbox = document.querySelector("#lapset-cb");
 
@@ -250,7 +282,7 @@ child_checkbox.addEventListener('change', event => {
   }
 });
 
-/*
+
 // GET THE VALUES OF THE CHECKBOXES
 const get_values = () => {
   let values = '';
@@ -291,4 +323,7 @@ const count_checkedBoxes = () => {
 };
 
 addPhotoBtn.addEventListener('click', count_checkedBoxes);
+
+
+
 */
