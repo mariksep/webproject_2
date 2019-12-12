@@ -194,7 +194,6 @@ body, html {
   flex-wrap: wrap-reverse;
   justify-content: space-around;
   align-items: flex-start;
-  border: 2px solid $musta; // ota pois kun valmis
 }
 
 .card {
@@ -456,7 +455,6 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  border: 2px solid $musta; // väliaikaisesti jotta nähdään missä menee rajat
 }
 
 .navi-content {
@@ -464,13 +462,11 @@ nav {
   position: absolute;
   height: 300px;
   width: 205px;
-  border: 2px solid $musta;
   margin-top: 20px;
 
   ul {
     list-style-type: none;
     padding: 15px;
-    text-align: center;
     i{
       cursor: pointer;
     }
@@ -485,7 +481,6 @@ nav {
     margin-bottom: 20%;
     position: initial;
   h5{
-    text-align: center;
     padding-left:15%;
   }
      #search-input {
@@ -576,6 +571,7 @@ nav {
 
 // MY PROFILE PAGE
 #myPage{
+  height: -webkit-fill-available;
   display: none; /* Hidden by default */
   z-index: 1; /* Sit on top */
   top: 0;
@@ -634,7 +630,6 @@ nav {
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: flex-start;
-        border: 2px solid $musta; // ota pois kun valmis
 
        button{
          margin: 10px;
@@ -782,38 +777,7 @@ nav {
   #recipe-cb-modify {
     font-weight: bold;
   }
-/*
-  #recipe-form {
-    background-color: white;
-    display: none;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    border-radius: 28px;
-    width: 450px;
-    height: 700px;
 
-    #ainesosio {
-      display: flex;
-      width: 70%;
-      justify-content: space-around;
-    }
-
-    #ohjeosio {
-      display: flex;
-      width: 70%;
-      justify-content: space-around;
-    }
-
-    .submit_button {
-      margin: 0;
-      width: 50%;
-    }
-
-
-
-  }
-*/
 }
 
 
@@ -904,7 +868,7 @@ nav {
     }
     #logout-button{
       width: 60%;
-      margin-left: 10%;
+
     }
   }
 
@@ -916,26 +880,29 @@ nav {
     background-color: white;
     text-align: center;
     font-size: 150%;
-
-    #search-form{
-      margin-bottom: 20%;
-      h5{
-        margin-left: 50%;
-      }
-      #search-input{
-        margin-left: 40%;
-        width: 60%;
-      }
-      #search-button{
-        width: 10%;
-        height: 35px;
-      }
-      #logout-button{
-        width: 60%;
-        margin-left: 50%;
-      }
-    }
+    ul{
+   padding: 15px;
   }
+
+#search-form{
+margin-bottom: 20%;
+h5{
+margin-left: 50%;
+}
+#search-input{
+margin-left: 40%;
+width: 60%;
+}
+#search-button{
+width: 10%;
+height: 35px;
+}
+#logout-button{
+width: 60%;
+margin-left: 50%;
+}
+}
+}
 
 }
 

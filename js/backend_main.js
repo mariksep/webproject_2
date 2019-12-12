@@ -212,22 +212,6 @@ const getPic = async () => {
   }
 };
 
-// GET USERS PIC
-const getPicU = async () => {
-  console.log('getPic   token ', sessionStorage.getItem('token'));
-  try {
-    const options = {
-      headers: {
-        'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-      },
-    };
-    const response = await fetch(url + '/pic', options);
-    const pics = await response.json();
-    createPicCards_user(pics);
-  } catch (e) {
-    console.log(e.message);
-  }
-};
 
 // SEARCH WITH TAG
 const searchtags = async (evt) => {

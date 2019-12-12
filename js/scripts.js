@@ -126,35 +126,6 @@ const showNav = () => {
 navigation.addEventListener('click', showNav);
 
 
-// CHANGE IF 'RECIPE'-CHECKBOX IS CHOSEN, ADD RECIPE
-const recipe_checkbox = document.querySelector("input[name=recipe]");
-const recipe_form = document.getElementById('recipe-form');
-const add_photo = document.getElementById('adding_form');
-
-recipe_checkbox.addEventListener('change', event => {
-
-  if(event.target.checked) {
-    // Checkbox is checked
-    add_photo.style.display = 'none';
-    recipe_form.style.display = 'flex';
-  }
-
-  else {
-    //Checkbox is not checked
-    console.log('error');
-  }
-});
-
-//CLOSE RECIPE-FORM
-const recipe_apply_btn = document.getElementById('recipe-apply-btn');
-
-const close_add_recipe = () => {
-  recipe_form.style.display = 'none';
-  add_photo.style.display = 'flex';
-};
-
-recipe_apply_btn.addEventListener('click', close_add_recipe);
-
 
 //radio buttons
 const type = document.getElementsByName("themes");
