@@ -8,4 +8,14 @@
     Click on the pictures to enlarge them.
     In the top right corner you can add pictures.
 </p>
-<img src="">
+<h1>Login page</h1>
+<img src="https://github.com/mariksep/webproject_2/blob/master/login.jpg">
+<h1>Page</h1>
+<img src="https://github.com/mariksep/webproject_2/blob/master/n%C3%A4kym%C3%A4.jpg">
+<h1>Add page</h1>
+<img src="https://github.com/mariksep/webproject_2/blob/master/add.jpg">
+<h1>Modal</h1>
+<img src="https://github.com/mariksep/webproject_2/blob/master/modal.jpg">
+<h1>My page</h1>
+<img src="https://github.com/mariksep/webproject_2/blob/master/my.jpg">
+
