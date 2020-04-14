@@ -8,6 +8,26 @@
     Click on the pictures to enlarge them.
     In the top right corner you can add pictures.
 </p>
+<div>
+    <h2>The techniques we used</h2>
+ <ul>
+        <li>
+            Node.js
+        </li>
+        <li>
+            Express.js
+        </li>
+        <li>
+            JavaScript (ES6 ->)
+        </li>
+         <li>
+           HTML
+        </li>
+          <li>
+           CSS
+        </li>
+      </ul>
+</div>
 <h1>Login page</h1>
 <img src="https://github.com/mariksep/webproject_2/blob/master/login.jpg">
 <h1>Page</h1>
