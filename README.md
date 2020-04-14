@@ -17,6 +17,9 @@
         <li>
             Express.js
         </li>
+       <li>
+           SQL
+        </li>
         <li>
             JavaScript (ES6 ->)
         </li>
